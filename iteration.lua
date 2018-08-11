@@ -64,12 +64,12 @@ function removeLine (index, target)
 end
   
 function reduceField (currentIter)
-  if currentIter.width > currentIter.decay or currentIter.height > currentIter.decay then 
-    if currentIter.width > currentIter.decay then
+  if math.ceil(currentIter.width / 2) > currentIter.decay or math.ceil(currentIter.height / 2) > currentIter.decay then 
+    if math.ceil(currentIter.width / 2) > currentIter.decay then
       removeCol(currentIter.decay - 1, currentIter)
       removeCol(currentIter.width - currentIter.decay, currentIter)
     end
-    if currentIter.height > currentIter.decay then
+    if math.ceil(currentIter.height / 2) > currentIter.decay then
       removeLine(currentIter.decay - 1, currentIter)
       removeLine(currentIter.height - currentIter.decay, currentIter)
     end
