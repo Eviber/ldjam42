@@ -52,14 +52,12 @@ end
 function removeCol (index, target)
   for i = 0, target.height - 1 do
     target.field[index][i].state = 0
-    print("Col : Removed tile ["..index.." "..i.."]")
   end
 end
 
 function removeLine (index, target)
   for i = 0, target.width - 1 do
     target.field[i][index].state = 0
-    print("Line : Removed tile ["..i.." "..index.."]")
   end
 end
   
@@ -74,7 +72,6 @@ function reduceField (currentIter)
       removeLine(currentIter.height - currentIter.decay, currentIter)
     end
     currentIter.decay = currentIter.decay + 1
-    print("Decayed")
   else
     local newIter = Iteration:new(currentIter.id - 1, 7, 5, 1)
     return newIter
