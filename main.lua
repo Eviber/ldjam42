@@ -10,6 +10,7 @@ function love.load()
 end
 
 function love.draw()
+<<<<<<< HEAD
 	lg.setColor(255,255,255,255)
 	lg.line(Cursor.x, Cursor.y, dirx, diry)
 	lg.ellipse('fill', Cursor.x, Cursor.y, Cursor.w, Cursor.h)
@@ -17,4 +18,6 @@ end
 
 function love.update(dt)
 	controls.getInput(dt)
+=======
+>>>>>>> theo
 end
