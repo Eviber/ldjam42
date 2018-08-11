@@ -19,19 +19,20 @@ end
 
 
 function Tile:new (x, y, state)
-  setmetatable({}, Tile)
+  local o = {}
+  setmetatable(o, Tile)
   self.x = x
   self.y = y
   self.state = state or self.state
-  return self
+  return o
 end
 
 function Field:new (width, height)
   setmetatable({}, Field)
   local i, j 
-  for i = 0, (width * 2) - 1 do
+  for i = 0, width do
     self[i] = {}
-    for j = 0, (height * 2) - 1 do
+    for j = 0, height - 1 do
       self[i][j] = Tile:new(i, j, 1)
     end
   end
@@ -49,31 +50,28 @@ function Iteration:new (id, width, height, decay)
 end
 
 function removeCol (index, target)
-  for i = 0, target.height do
+  for i = 0, target.height - 1 do
     target.field[index][i].state = 0
-    print("Col : Removed tile ["..index.." "..i.."]")
   end
 end
 
 function removeLine (index, target)
-  for i = 0, target.width do
+  for i = 0, target.width - 1 do
     target.field[i][index].state = 0
-    print("Line : Removed tile ["..i.." "..index.."]")
   end
 end
   
 function reduceField (currentIter)
-  if currentIter.width > currentIter.decay or currentIter.height > currentIter.decay then 
-    if currentIter.width > currentIter.decay then
-      removeCol(currentIter.decay, currentIter)
-      removeCol(currentIter.width * 2 - currentIter.decay, currentIter)
+  if math.ceil(currentIter.width / 2) > currentIter.decay or math.ceil(currentIter.height / 2) > currentIter.decay then 
+    if math.ceil(currentIter.width / 2) > currentIter.decay then
+      removeCol(currentIter.decay - 1, currentIter)
+      removeCol(currentIter.width - currentIter.decay, currentIter)
     end
-    if currentIter.height > currentIter.decay then
-      removeLine(currentIter.decay, currentIter)
-      removeLine(currentIter.height * 2 - currentIter.decay, currentIter)
+    if math.ceil(currentIter.height / 2) > currentIter.decay then
+      removeLine(currentIter.decay - 1, currentIter)
+      removeLine(currentIter.height - currentIter.decay, currentIter)
     end
     currentIter.decay = currentIter.decay + 1
-    print("Decayed")
   else
     local newIter = Iteration:new(currentIter.id - 1, 7, 5, 1)
     return newIter
@@ -81,7 +79,16 @@ function reduceField (currentIter)
   return currentIter
 end
 
-
+function printTable (cible)
+  local i, j
+  for i = 0, iter.width - 1 do
+    for j = 0, iter.height - 1 do
+      io.write(iter.field[i][j].state.." ")
+    end
+    io.write("\n")
+  end
+  io.write("\n")
+end
 --[[print("hai")
 for k, j in pairs(iter) do
   print(k, j)
