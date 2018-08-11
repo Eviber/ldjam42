@@ -10,12 +10,9 @@ function love.load()
 end
 
 function love.draw()
-	lg.setColor(0,0,200,255)
+	lg.setColor(255,255,255,255)
 	lg.line(Cursor.x, Cursor.y, dirx, diry)
 	lg.ellipse('fill', Cursor.x, Cursor.y, Cursor.w, Cursor.h)
-	if collision then
-		lg.print('COLLISION!!!', W/2, 0)
-	end
 end
 
 function love.update(dt)
