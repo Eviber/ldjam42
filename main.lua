@@ -1,14 +1,17 @@
 local lg = love.graphics
 
+local isDown = love.keyboard.isDown
+
 local controls = require "controls"
 local iteration = require "iteration"
+--local debug = require "debug"
 
 function love.load()
 	love.window.setMode(1280, 800)
 	W, H = lg.getWidth(), lg.getHeight()
 	w,h = 5,5
 	Cursor = {x = math.random(W-w), y = math.random(H-h), w = w, h = h}
-  iter = Iteration:new(0, 8, 10, 1)
+  iter = Iteration:new(0, 9, 11, 1)
   tileDim = math.min(W / iter.width, H / iter.height)
   timeSum = 0
 end
