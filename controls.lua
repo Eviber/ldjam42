@@ -19,12 +19,12 @@ local realdx, realdy = 0, 0
 local function applyvel(vel, deg, dt)
 	local norm = math.sqrt(realdx^2 + realdy^2)
 	if norm > 0 then
-		realdx = realdx / norm * (norm - 14 * dt)
-		realdy = realdy / norm * (norm - 14 * dt)
+		realdx = realdx / norm * (norm - 10 * dt)
+		realdy = realdy / norm * (norm - 10 * dt)
 		norm = math.sqrt(realdx^2 + realdy^2)
-		--if norm < 1 then
-		--	realdx, realdy = 0, 0
-		--end
+		if norm < 1  and vel == 0 then
+			realdx, realdy = 0, 0
+		end
 	end
 	realdx = realdx + vel * math.cos(deg)
 	realdy = realdy + vel * math.sin(deg)
