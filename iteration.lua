@@ -32,7 +32,7 @@ function Field:new (width, height)
   for i = 0, (width * 2) - 1 do
     self[i] = {}
     for j = 0, (height * 2) - 1 do
-      self[i][j] = Tile:new(i, j)
+      self[i][j] = Tile:new(i, j, 1)
     end
   end
   return self
@@ -51,12 +51,14 @@ end
 function removeCol (index, target)
   for i = 0, target.height do
     target.field[index][i].state = 0
+    print("Col : Removed tile ["..index.." "..i.."]")
   end
 end
 
 function removeLine (index, target)
   for i = 0, target.width do
     target.field[i][index].state = 0
+    print("Line : Removed tile ["..i.." "..index.."]")
   end
 end
   
@@ -71,6 +73,7 @@ function reduceField (currentIter)
       removeLine(currentIter.height * 2 - currentIter.decay, currentIter)
     end
     currentIter.decay = currentIter.decay + 1
+    print("Decayed")
   else
     local newIter = Iteration:new(currentIter.id - 1, 7, 5, 1)
     return newIter
@@ -78,20 +81,20 @@ function reduceField (currentIter)
   return currentIter
 end
 
-iter = Iteration:new(0, 7, 5, 1)
-print("hai")
+
+--[[print("hai")
 for k, j in pairs(iter) do
   print(k, j)
-end
+end]]
 
-print(iter.field)
+--print(iter.field)
 --readTable(iter.field)
 
-while iter.id >= -5 do
+--[[while iter.id >= -5 do
   iter = reduceField(iter)
   print("The current field is field n°" .. tostring(iter.id) .. " and its decay is " .. tostring(iter.decay))
   if iter.id < -5 then
     print("GAME OVER")
   end
-end
+end]]
 
