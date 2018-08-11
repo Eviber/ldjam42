@@ -19,7 +19,7 @@ end
 
 
 function Tile:new (x, y, state)
-  o = {}
+  local o = {}
   setmetatable(o, Tile)
   self.x = x
   self.y = y
