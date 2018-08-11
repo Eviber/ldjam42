@@ -15,19 +15,51 @@ local function oob()
 	end
 end
 
-function controls.getInput()
+local realdx, realdy = 0, 0
+local function applyvel(vel, deg, dt)
+	local norm = math.sqrt(realdx^2 + realdy^2)
+	if norm > 0 then
+		realdx = realdx / norm * (norm - 14 * dt)
+		realdy = realdy / norm * (norm - 14 * dt)
+		norm = math.sqrt(realdx^2 + realdy^2)
+		--if norm < 1 then
+		--	realdx, realdy = 0, 0
+		--end
+	end
+	realdx = realdx + vel * math.cos(deg)
+	realdy = realdy + vel * math.sin(deg)
+	norm = math.sqrt(realdx^2 + realdy^2)
+	if norm > 10 then
+		realdx = realdx / norm * 10
+		realdy = realdy / norm * 10
+	end
+	print(norm)
+	return realdx, realdy
+end
+
+local deg = 0
+dirx, diry = 0, 0
+function controls.getInput(dt)
 	local dx,dy = 0,0
+	local vel = 0
+
 	if isDown('right') or isDown('d') then
-		dx = 10
+		deg = deg + 3 * dt
 	elseif isDown('left') or isDown('a') then
-		dx = -10
+		deg = deg - 3 * dt
 	end
 	if isDown('up') or isDown('w') then
-		dy = -10
-	elseif isDown('down') or isDown('s') then
-		dy = 10
+		vel = 15 * dt
+	else
+		vel = 0
 	end
+	if vel < 0 or vel > 10 then
+		vel = vel < 0 and 0 or 5
+	end
+	dx, dy = applyvel(vel, deg, dt)
 	Cursor.x, Cursor.y = Cursor.x+dx, Cursor.y+dy
+	dirx = Cursor.x + (20 * math.cos(deg))
+	diry = Cursor.y + (20 * math.sin(deg))
 	oob()
 end
 

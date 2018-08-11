@@ -4,18 +4,19 @@ local controls = require "controls"
 
 function love.load()
 	W, H = lg.getWidth(), lg.getHeight()
-	w,h = 20,20
+	w,h = 5,5
 	Cursor = {x = math.random(W-w), y = math.random(H-h), w = w, h = h}
 end
 
 function love.draw()
-	lg.setColor(0, 255,0,255)
-	lg.rectangle('fill', Cursor.x, Cursor.y, Cursor.w, Cursor.h)
+	lg.setColor(0,0,200,255)
+	lg.line(Cursor.x, Cursor.y, dirx, diry)
+	lg.ellipse('fill', Cursor.x, Cursor.y, Cursor.w, Cursor.h)
 	if collision then
 		lg.print('COLLISION!!!', W/2, 0)
 	end
 end
 
 function love.update(dt)
-	controls.getInput()
+	controls.getInput(dt)
 end
