@@ -16,7 +16,6 @@ function love.draw()
 	end
 end
 
-local isDown = love.keyboard.isDown
 function love.update(dt)
 	controls.getInput()
 end
