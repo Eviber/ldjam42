@@ -3,6 +3,7 @@ local lg = love.graphics
 local controls = require "controls"
 
 function love.load()
+	love.window.setMode(1280, 800)
 	W, H = lg.getWidth(), lg.getHeight()
 	w,h = 5,5
 	Cursor = {x = math.random(W-w), y = math.random(H-h), w = w, h = h}
