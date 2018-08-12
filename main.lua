@@ -2,6 +2,7 @@ local lg = love.graphics
 
 local controls = require "controls"
 local iteration = require "iteration"
+local sound = require "sound"
 
 function love.load()
 	love.window.setMode(1280, 800)
@@ -11,6 +12,7 @@ function love.load()
   iter = Iteration:new(0, 8, 10, 1)
   tileDim = math.min(W / iter.width, H / iter.height)
   timeSum = 0
+	sound.preload()
 end
 
 function love.draw()
@@ -48,4 +50,5 @@ function love.update(dt)
     --print("The current field is field n°" .. tostring(iter.id) .. " and its decay is " .. tostring(iter.decay))
   end
 	controls.getInput(dt)
+	sound.update()
 end
