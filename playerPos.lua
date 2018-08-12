@@ -16,6 +16,7 @@ function posReact(dt)
 		immunityTimer = immunityTimer + dt
 		if immunityTimer >= 0.5 then
 			voidDamage()
+			screen:setShake(2)
 		end
 	else
 		immunityTimer = 0

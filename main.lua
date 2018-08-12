@@ -5,7 +5,7 @@ local isDown = love.keyboard.isDown
 local controls = require "controls"
 local iteration = require "iteration"
 local drawIter = require"drawIter"
-local screen = require "shack/shack"
+screen = require "shack/shack"
 local playerPos = require "playerPos"
 
 function love.load()
@@ -45,9 +45,6 @@ function love.update(dt)
 	screen:update(dt)
 	psystem:update(dt)
 	psystem:moveTo(Player.x, Player.y)
-	if isDown('space') then
-		screen:setShake(20)
-	end
 	posReact(dt)
 	iter = reduceField(iter, dt)
 	if iter.decay ~= 0 then
