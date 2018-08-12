@@ -13,7 +13,7 @@ function sound.effect()
 end
 
 function sound.update()
-		sound[2]:setPitch(math.floor(norm / 2 + 1) / 4)
+		sound[2]:setPitch((math.log(norm + 1.000001) + 1) / 4)
 		sound[2]:setVolume(norm / 10 + 0.1)
 end
 
