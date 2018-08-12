@@ -36,7 +36,7 @@ function love.update(dt)
 	if timeSum > 0.5 then
 		timeSum = timeSum - 0.5
 		iter = reduceField(iter)
-    --print("The current field is field n°" .. tostring(iter.id) .. " and its decay is " .. tostring(iter.decay))
+		--print("The current field is field n°" .. tostring(iter.id) .. " and its decay is " .. tostring(iter.decay))
 	end
 	controls.getInput(dt)
 end
