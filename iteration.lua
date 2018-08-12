@@ -28,17 +28,6 @@ function Tile:new (x, y, state)
 end
 
 function Field:new (width, height)
-<<<<<<< HEAD
-	setmetatable({}, Field)
-	local i, j 
-	for i = 0, width do
-		self[i] = {}
-		for j = 0, height - 1 do
-			self[i][j] = Tile:new(i, j, 1)
-		end
-	end
-	return self
-=======
   setmetatable({}, Field)
   local i, j 
   for i = 0, width do
@@ -48,7 +37,6 @@ function Field:new (width, height)
     end
   end
   return self
->>>>>>> playerPos
 end
 
 function Iteration:new (id, width, height, decay)
@@ -62,17 +50,6 @@ function Iteration:new (id, width, height, decay)
 end
 
 function removeCol (index, target)
-<<<<<<< HEAD
-	for i = 0, target.height - 1 do
-		target.field[index][i].state = 0
-	end
-end
-
-function removeLine (index, target)
-	for i = 0, target.width - 1 do
-		target.field[i][index].state = 0
-	end
-=======
   for i = 0, target.height - 1 do
     target.field[index][i] = target.field[index][i] >= 0 and target.field[index][i] * -1 or target.field[index][i]
   end
@@ -82,7 +59,6 @@ function removeLine (index, target)
   for i = 0, target.width - 1 do
     target.field[i][index] = target.field[i][index] >= 0 and target.field[i][index] * -1 or target.field[i][index]
   end
->>>>>>> playerPos
 end
 
 function reduceField (currentIter)
