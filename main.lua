@@ -7,16 +7,17 @@ local iteration = require "iteration"
 local drawIter = require"drawIter"
 local screen = require "shack/shack"
 local playerPos = require "playerPos"
---local debug = require "debug"
 
 function love.load()
 	love.window.setMode(1280, 800)
 	W, H = lg.getWidth(), lg.getHeight()
-	screen:setDimensions(W, H)
 	w,h = 5,5
+	diag = math.sqrt((W/2)^2 + (H/2)^2)
 	Player = {x = W/2, y = H/2, w = w, h = h, health = 100}
-	iter = Iteration:new(0, W / 8, H / 8, W/2)
+	iter = Iteration:new(0, W / 8, H / 8, diag)
 	tileDim = math.min(W / iter.width, H / iter.height)
+-- --------------------------------------------------------------
+	screen:setDimensions(W, H)
 	psystem = lg.newParticleSystem(love.graphics.newImage('pixel.png'))
 	psystem:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
 	psystem:setEmissionRate(200)
@@ -24,6 +25,7 @@ function love.load()
 	psystem:setSizeVariation(0)
 	psystem:setLinearAcceleration(-20, -20, 20, 20) -- Random movement in all directions.
 	psystem:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+-- --------------------------------------------------------------
 	timeSum = 0
 end
 
@@ -48,6 +50,9 @@ function love.update(dt)
 	end
 	posReact(dt)
 	iter = reduceField(iter, dt)
-	iter.decay = iter.decay - 20 * dt
+	if iter.decay ~= 0 then
+		iter.decay = iter.decay - 20 * dt
+	end
+	if iter.decay < 0 then iter.decay = 0 end
 	controls.getInput(dt)
 end
