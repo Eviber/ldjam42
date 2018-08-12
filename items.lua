@@ -1,5 +1,7 @@
 Exit = {x, y, val, locked}
 
+sfx = require "sfx"
+
 function Exit:new(x, y, id)
 	local o = {}
 	setmetatable(o, Exit)
@@ -42,6 +44,7 @@ function HealthPack:interact(obj)
 	self.__index = self
 	Player.health = Player.health + 30 > 100 and 100 or Player.health + 30
 	iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.val
+	sfx["beep"]:play()
 end
 
 RealityCrafter = {x, y, id}
