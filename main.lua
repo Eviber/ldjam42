@@ -11,7 +11,7 @@ function love.load()
 	love.window.setMode(1280, 800)
 	W, H = lg.getWidth(), lg.getHeight()
 	w,h = 5,5
-	Cursor = {x = math.random(W-w), y = math.random(H-h), w = w, h = h}
+	Player = {x = math.random(W-w), y = math.random(H-h), w = w, h = h}
   iter = Iteration:new(0, W / 4, H / 4, 1)
   tileDim = math.min(W / iter.width, H / iter.height)
   timeSum = 0
@@ -20,8 +20,8 @@ end
 function love.draw()
   drawField(iter)
   lg.setColor(0,255,0,255)
-	lg.line(Cursor.x, Cursor.y, dirx, diry)
-	lg.ellipse('fill', Cursor.x, Cursor.y, Cursor.w, Cursor.h)
+	lg.line(Player.x, Player.y, dirx, diry)
+	lg.ellipse('fill', Player.x, Player.y, Player.w, Player.h)
 	--[[if collision then
 		lg.print('COLLISION!!!', W/2, 0)
 	end]]
