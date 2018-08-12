@@ -8,6 +8,8 @@ local drawIter = require"drawIter"
 screen = require "shack/shack"
 local playerPos = require "playerPos"
 local vfx = require "vfx"
+local items = require "items"
+--local debug = require "debug"
 
 function love.load()
 	love.window.setMode(1280, 800)
@@ -19,6 +21,15 @@ function love.load()
 	tileDim = math.min(W / iter.width, H / iter.height)
 	vfx.load()
 	timeSum = 0
+	itemList = {}
+	realityBuffer = 0
+	
+	-------------------
+	door = Exit:new(W / (tileDim * 2) + 10, H / (tileDim * 2) ,2)
+	Exit.changeLock(door, false)
+	pack = HealthPack:new(30, 50, 3)
+	crafter = RealityCrafter:new(50, 30, 4)
+	-------------------
 end
 
 function love.draw()
@@ -39,7 +50,12 @@ function love.update(dt)
 	posReact(dt)
 	reduceField(iter, dt)
 	if iter.decay ~= 0 then
-		iter.decay = iter.decay - 20 * dt
+		if realityBuffer == 0 then
+			iter.decay = iter.decay - 20 * dt
+		else
+			iter.decay = iter.decay + 20 * dt
+			realityBuffer = realityBuffer - 20 * dt < 0 and 0 or realityBuffer - 20 * dt
+		end
 	end
 	if iter.decay < 0 then iter.decay = 0 end
 	controls.getInput(dt)
