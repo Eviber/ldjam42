@@ -6,6 +6,7 @@ local controls = require "controls"
 local iteration = require "iteration"
 local drawIter = require"drawIter"
 local screen = require "shack/shack"
+local playerPos = require "playerPos"
 --local debug = require "debug"
 
 function love.load()
@@ -13,33 +14,40 @@ function love.load()
 	W, H = lg.getWidth(), lg.getHeight()
 	screen:setDimensions(W, H)
 	w,h = 5,5
-	Player = {x = math.random(W-w), y = math.random(H-h), w = w, h = h}
-  iter = Iteration:new(0, W / 4, H / 4, 1)
-  tileDim = math.min(W / iter.width, H / iter.height)
-  timeSum = 0
+	Player = {x = W/2, y = H/2, w = w, h = h, health = 100}
+	iter = Iteration:new(0, W / 8, H / 8, W/2)
+	tileDim = math.min(W / iter.width, H / iter.height)
+	psystem = lg.newParticleSystem(love.graphics.newImage('pixel.png'))
+	psystem:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
+	psystem:setEmissionRate(200)
+	psystem:setSizes(0, 10)
+	psystem:setSizeVariation(0)
+	psystem:setLinearAcceleration(-20, -20, 20, 20) -- Random movement in all directions.
+	psystem:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+	timeSum = 0
 end
 
 function love.draw()
 	screen:apply()
-  drawField(iter)
-  lg.setColor(0,255,0,255)
+	drawField(iter)
+	lg.setColor(0,255,0,255)
+	--	lg.circle("line", W/2, H/2, iter.decay)
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('fill', Player.x, Player.y, Player.w, Player.h)
-	--[[if collision then
-		lg.print('COLLISION!!!', W/2, 0)
-	end]]
+	lg.setColor(1, 0, 0, 1)
+	lg.print("Health : "..math.floor(Player.health), 0, 0)
+	lg.draw(psystem)
 end
 
 function love.update(dt)
 	screen:update(dt)
+	psystem:update(dt)
+	psystem:moveTo(Player.x, Player.y)
 	if isDown('space') then
 		screen:setShake(20)
 	end
-  timeSum = timeSum + dt
-  if timeSum > 0.5 then
-    timeSum = timeSum - 0.5
-    iter = reduceField(iter)
-    --print("The current field is field n°" .. tostring(iter.id) .. " and its decay is " .. tostring(iter.decay))
-  end
+	posReact(dt)
+	iter = reduceField(iter, dt)
+	iter.decay = iter.decay - 20 * dt
 	controls.getInput(dt)
 end
