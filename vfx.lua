@@ -5,15 +5,15 @@ vfx = {}
 function vfx.load()
 	screen:setDimensions(W, H)
 	psystem = lg.newParticleSystem(love.graphics.newImage('pixel.png'))
-	psystem:setParticleLifetime(1) -- Particles live at least 2s and at most 5s.
+	psystem:setParticleLifetime(1)
 	psystem:setSizes(2, 20)
-	psystem:setLinearAcceleration(50, 50, -50, -50) -- Random movement in all directions.
+	psystem:setLinearAcceleration(50, 50, -50, -50)
 	psystem:setSizeVariation(0)
-	psystem:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+	psystem:setColors(255, 255, 255, 255, 255, 255, 255, 0)
 end
 
 function vfx.update(dt)
-	psystem:setEmissionRate(10 * norm)
+	psystem:setEmissionRate(10 * norm + 1)
 	screen:update(dt)
 	psystem:update(dt)
 	psystem:moveTo(Player.x, Player.y)
