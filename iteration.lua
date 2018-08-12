@@ -66,7 +66,6 @@ function reduceField (currentIter, dt)
 		local i = 0
 		while not killTile(iter) and i < 50 do i = i + 1 end
 	end
-	return currentIter
 end
 
 function printTable (cible)
