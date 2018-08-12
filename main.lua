@@ -27,7 +27,7 @@ function love.draw()
 		lg.print('COLLISION!!!', W/2, 0)
 	end]]
 	lg.setColor(1, 0, 0, 1)
-	lg.print("Health : "..Player.health, 0, 0)
+	lg.print("Health : "..math.floor(Player.health), 0, 0)
 end
 
 function love.update(dt)
