@@ -21,7 +21,7 @@ end
 function love.draw()
 	drawField(iter)
 	lg.setColor(0,255,0,255)
---	lg.circle("line", W/2, H/2, iter.decay)
+	--	lg.circle("line", W/2, H/2, iter.decay)
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('fill', Player.x, Player.y, Player.w, Player.h)
 	--[[if collision then
