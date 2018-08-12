@@ -5,11 +5,13 @@ local isDown = love.keyboard.isDown
 local controls = require "controls"
 local iteration = require "iteration"
 local drawIter = require"drawIter"
+local screen = require "shack/shack"
 --local debug = require "debug"
 
 function love.load()
 	love.window.setMode(1280, 800)
 	W, H = lg.getWidth(), lg.getHeight()
+	screen:setDimensions(W, H)
 	w,h = 5,5
 	Player = {x = math.random(W-w), y = math.random(H-h), w = w, h = h}
   iter = Iteration:new(0, W / 4, H / 4, 1)
@@ -18,6 +20,7 @@ function love.load()
 end
 
 function love.draw()
+	screen:apply()
   drawField(iter)
   lg.setColor(0,255,0,255)
 	lg.line(Player.x, Player.y, dirx, diry)
@@ -28,6 +31,10 @@ function love.draw()
 end
 
 function love.update(dt)
+	screen:update(dt)
+	if isDown('space') then
+		screen:setShake(20)
+	end
   timeSum = timeSum + dt
   if timeSum > 0.5 then
     timeSum = timeSum - 0.5
