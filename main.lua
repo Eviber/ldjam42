@@ -13,7 +13,7 @@ function love.load()
 	W, H = lg.getWidth(), lg.getHeight()
 	w,h = 5,5
 	Player = {x = math.random(W-w), y = math.random(H-h), w = w, h = h, health = 100}
-	iter = Iteration:new(0, W / 4, H / 4, 1)
+	iter = Iteration:new(0, W / 4, H / 4, W/2)
 	tileDim = math.min(W / iter.width, H / iter.height)
 	timeSum = 0
 end
@@ -21,6 +21,7 @@ end
 function love.draw()
 	drawField(iter)
 	lg.setColor(0,255,0,255)
+--	lg.circle("line", W/2, H/2, iter.decay)
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('fill', Player.x, Player.y, Player.w, Player.h)
 	--[[if collision then
@@ -33,9 +34,10 @@ end
 function love.update(dt)
 	timeSum = timeSum + dt
 	posReact(dt)
-	if timeSum > 0.5 then
-		timeSum = timeSum - 0.5
-		iter = reduceField(iter)
+	iter = reduceField(iter)
+	if timeSum > 1 then
+		timeSum = 0
+		iter.decay = iter.decay - 10
 		--print("The current field is field n°" .. tostring(iter.id) .. " and its decay is " .. tostring(iter.decay))
 	end
 	controls.getInput(dt)
