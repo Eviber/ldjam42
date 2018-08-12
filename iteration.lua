@@ -49,18 +49,6 @@ function Iteration:new (id, width, height, decay)
 	return self
 end
 
-function removeCol (index, target)
-	for i = 0, target.height - 1 do
-		target.field[index][i] = target.field[index][i] >= 0 and target.field[index][i] * -1 or target.field[index][i]
-	end
-end
-
-function removeLine (index, target)
-	for i = 0, target.width - 1 do
-		target.field[i][index] = target.field[i][index] >= 0 and target.field[i][index] * -1 or target.field[i][index]
-	end
-end
-
 function killTile(iter)
 	local x, y = math.random(0, iter.width - 1), math.random(0, iter.height - 1)
 	local dx = x * tileDim + tileDim / 2 - W / 2
@@ -74,13 +62,9 @@ function killTile(iter)
 end
 
 function reduceField (currentIter, dt)
-	if currentIter.decay > 50 then
-		for _ = 0, 500 * dt do
-			while not killTile(iter) do end
-		end
-	else
-		local newIter = Iteration:new(currentIter.id - 1, W/4, W/4, W/2)
-		return newIter
+	for _ = 0, 500 * dt do
+		local i = 0
+		while not killTile(iter) and i < 50 do i = i + 1 end
 	end
 	return currentIter
 end
