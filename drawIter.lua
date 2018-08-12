@@ -5,7 +5,7 @@ function drawField (source)
   lg.setColor(255, 255, 255, 255)
   for i = 0, iter.width - 1 do
     for j = 0, iter.height - 1 do
-      if iter.field[i][j].state ~= 0 then
+      if iter.field[i][j] > 0 then
         lg.rectangle('fill', i * tileDim + (W - iter.width * tileDim) / 2, j * tileDim + (H - iter.height * tileDim) / 2, tileDim, tileDim)
       --[[else
         print("tile ["..i.." "..j.."]")]]

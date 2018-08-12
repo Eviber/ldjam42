@@ -33,7 +33,7 @@ function Field:new (width, height)
   for i = 0, width do
     self[i] = {}
     for j = 0, height - 1 do
-      self[i][j] = Tile:new(i, j, 1)
+      self[i][j] = 1--Tile:new(i, j, 1)
     end
   end
   return self
@@ -51,13 +51,13 @@ end
 
 function removeCol (index, target)
   for i = 0, target.height - 1 do
-    target.field[index][i].state = 0
+    target.field[index][i] = target.field[index][i] >= 0 and target.field[index][i] * -1 or target.field[index][i]
   end
 end
 
 function removeLine (index, target)
   for i = 0, target.width - 1 do
-    target.field[i][index].state = 0
+    target.field[i][index] = target.field[i][index] >= 0 and target.field[i][index] * -1 or target.field[i][index]
   end
 end
   
