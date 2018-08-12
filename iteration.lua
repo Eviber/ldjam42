@@ -73,13 +73,13 @@ function killTile(iter)
 	end
 end
 
-function reduceField (currentIter)
+function reduceField (currentIter, dt)
 	if currentIter.decay > 50 then
-		for _ = 0, 30 do
+		for _ = 0, 500 * dt do
 			while not killTile(iter) do end
 		end
 	else
-		local newIter = Iteration:new(currentIter.id - 1, 7, 5, W/2)
+		local newIter = Iteration:new(currentIter.id - 1, W/4, W/4, W/2)
 		return newIter
 	end
 	return currentIter

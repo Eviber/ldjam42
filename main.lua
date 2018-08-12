@@ -12,8 +12,8 @@ function love.load()
 	love.window.setMode(1280, 800)
 	W, H = lg.getWidth(), lg.getHeight()
 	w,h = 5,5
-	Player = {x = math.random(W-w), y = math.random(H-h), w = w, h = h, health = 100}
-	iter = Iteration:new(0, W / 4, H / 4, W/2)
+	Player = {x = W/2, y = H/2, w = w, h = h, health = 100}
+	iter = Iteration:new(0, W / 8, H / 8, W/2)
 	tileDim = math.min(W / iter.width, H / iter.height)
 	timeSum = 0
 end
@@ -32,13 +32,8 @@ function love.draw()
 end
 
 function love.update(dt)
-	timeSum = timeSum + dt
 	posReact(dt)
-	iter = reduceField(iter)
-	if timeSum > 1 then
-		timeSum = 0
-		iter.decay = iter.decay - 10
-		--print("The current field is field n°" .. tostring(iter.id) .. " and its decay is " .. tostring(iter.decay))
-	end
+	iter = reduceField(iter, dt)
+	iter.decay = iter.decay - 20 * dt
 	controls.getInput(dt)
 end
