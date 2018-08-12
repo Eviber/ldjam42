@@ -5,7 +5,7 @@ function drawField (source)
 	lg.setColor(255, 255, 255, 255)
 	for i = 0, iter.width - 1 do
 		for j = 0, iter.height - 1 do
-			if math.sqrt((i * tileDim + tileDim / 2 - W / 2)^2 + (j * tileDim + tileDim / 2 - W / 2)^2) < iter.decay and iter.field[i][j] < 0 then
+			if math.sqrt((i * tileDim + tileDim / 2 - W / 2)^2 + (j * tileDim + tileDim / 2 - H / 2)^2) < iter.decay and iter.field[i][j] < 0 then
 				iter.field[i][j] = iter.field[i][j] * -1
 			end
 			if iter.field[i][j] == 1 then
