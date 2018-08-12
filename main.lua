@@ -4,7 +4,7 @@ local isDown = love.keyboard.isDown
 
 local controls = require "controls"
 local iteration = require "iteration"
-local sound = require "sound"
+local sfx = require "sfx"
 local drawIter = require"drawIter"
 screen = require "shack/shack"
 local playerPos = require "playerPos"
@@ -24,7 +24,7 @@ function love.load()
 	timeSum = 0
 	itemList = {}
 	realityBuffer = 0
-	sound.preload()
+	sfx.preload()
 	-------------------
 	door = Exit:new(W / (tileDim * 2) + 10, H / (tileDim * 2) ,2)
 	Exit.changeLock(door, false)
@@ -60,5 +60,5 @@ function love.update(dt)
 	end
 	if iter.decay < 0 then iter.decay = 0 end
 	controls.getInput(dt)
-	sound.update()
+	sfx.update()
 end
