@@ -19,4 +19,4 @@ function drawField (source)
 	for j = 1, iter.height - 1 do
 	lg.rectangle('fill', (W - iter.width * tileDim) / 2, (j * tileDim) - 1 + (H - iter.height * tileDim) / 2, W - (W - iter.width * tileDim), 2)
 	end]]
-	end
+end

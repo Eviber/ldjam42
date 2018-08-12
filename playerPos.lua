@@ -5,8 +5,8 @@ local tileY
 local immunityTimer
 
 function getPos(x, y)
-	tileX = math.floor(x / 4)
-	tileY = math.floor(y / 4)
+	tileX = math.floor(x / 8)
+	tileY = math.floor(y / 8)
 	return tileX, tileY
 end
 

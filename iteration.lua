@@ -49,32 +49,22 @@ function Iteration:new (id, width, height, decay)
 	return self
 end
 
-function removeCol (index, target)
-	for i = 0, target.height - 1 do
-		target.field[index][i] = target.field[index][i] >= 0 and target.field[index][i] * -1 or target.field[index][i]
-	end
-end
-
-function removeLine (index, target)
-	for i = 0, target.width - 1 do
-		target.field[i][index] = target.field[i][index] >= 0 and target.field[i][index] * -1 or target.field[i][index]
-	end
-end
-
-function reduceField (currentIter)
-	if math.ceil(currentIter.width / 2) > currentIter.decay or math.ceil(currentIter.height / 2) > currentIter.decay then 
-		if math.ceil(currentIter.width / 2) > currentIter.decay then
-			removeCol(currentIter.decay - 1, currentIter)
-			removeCol(currentIter.width - currentIter.decay, currentIter)
-		end
-		if math.ceil(currentIter.height / 2) > currentIter.decay then
-			removeLine(currentIter.decay - 1, currentIter)
-			removeLine(currentIter.height - currentIter.decay, currentIter)
-		end
-		currentIter.decay = currentIter.decay + 1
+function killTile(iter)
+	local x, y = math.random(0, iter.width - 1), math.random(0, iter.height - 1)
+	local dx = x * tileDim + tileDim / 2 - W / 2
+	local dy = y * tileDim + tileDim / 2 - H / 2
+	if math.sqrt(dx^2 + dy^2) > iter.decay and iter.field[x][y] > 0 then
+		iter.field[x][y] = -iter.field[x][y]
+		return true
 	else
-		local newIter = Iteration:new(currentIter.id - 1, 7, 5, 1)
-		return newIter
+		return false
+	end
+end
+
+function reduceField (currentIter, dt)
+	for _ = 0, 500 * dt do
+		local i = 0
+		while not killTile(iter) and i < 50 do i = i + 1 end
 	end
 	return currentIter
 end
