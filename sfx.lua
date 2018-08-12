@@ -1,7 +1,7 @@
 sfx = {}
 
 function sfx.preload()
-	sfx[0] = love.audio.newSource("sfx/beep.wav", "static")
+	sfx["beep"] = love.audio.newSource("sfx/beep.wav", "static")
 	sfx[1] = love.audio.newSource("sfx/mgs.mp3", "static")
 	sfx[2] = love.audio.newSource("sfx/bom2.wav", "static")
 	sfx[2]:setLooping(true)
