@@ -5,12 +5,12 @@ local isDown = love.keyboard.isDown
 
 local function oob()
 	collision = false
-	if (Cursor.x > W - Cursor.w or Cursor.x < 0) then
-		Cursor.x = Cursor.x < 0 and 0 or W - Cursor.w
+	if (Player.x > W - Player.w or Player.x < 0) then
+		Player.x = Player.x < 0 and 0 or W - Player.w
 		collision = true
 	end
-	if (Cursor.y > H - Cursor.h or Cursor.y < 0) then
-		Cursor.y = Cursor.y < 0 and 0 or H - Cursor.h
+	if (Player.y > H - Player.h or Player.y < 0) then
+		Player.y = Player.y < 0 and 0 or H - Player.h
 		collision = true
 	end
 end
@@ -57,9 +57,9 @@ function controls.getInput(dt)
 		vel = vel < 0 and 0 or 5
 	end
 	dx, dy = applyvel(vel, deg, dt)
-	Cursor.x, Cursor.y = Cursor.x+dx, Cursor.y+dy
-	dirx = Cursor.x + (20 * math.cos(deg))
-	diry = Cursor.y + (20 * math.sin(deg))
+	Player.x, Player.y = Player.x+dx, Player.y+dy
+	dirx = Player.x + (20 * math.cos(deg))
+	diry = Player.y + (20 * math.sin(deg))
 	oob()
 end
 
