@@ -63,3 +63,17 @@ function RealityCrafter:interact()
 	realityBuffer = realityBuffer + 70
 	iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.val
 end
+
+Switch = {x, y, id}
+
+--[[function Switch:new(x, y, id)
+	local o = {}
+	setmetatable(o, Switch)
+	self.__index = self
+	self.x = x
+	self.y = y
+	self.val = 5
+	self.activated = false
+	iter.field[x][y] = id
+	itemList[id] = self
+	return o]]
