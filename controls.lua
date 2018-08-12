@@ -33,7 +33,6 @@ local function applyvel(vel, deg, dt)
 		realdx = realdx / norm * 10
 		realdy = realdy / norm * 10
 	end
-	print(norm)
 	return realdx, realdy
 end
 
