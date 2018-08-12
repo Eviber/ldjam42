@@ -65,7 +65,6 @@ function killTile(iter)
 	local x, y = math.random(0, iter.width - 1), math.random(0, iter.height - 1)
 	local dx = x * tileDim + tileDim / 2 - W / 2
 	local dy = y * tileDim + tileDim / 2 - H / 2
-	print(dx .. " " .. dy .. " " .. iter.decay)
 	if math.sqrt(dx^2 + dy^2) > iter.decay and iter.field[x][y] > 0 then
 		iter.field[x][y] = -iter.field[x][y]
 		return true
