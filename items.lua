@@ -23,7 +23,7 @@ function Exit:interact(obj)
 	Player.health = Player.health + 10 > 100 and 100 or Player.health + 10
 	iter = Iteration:new(iter.id - 1, W / 8, H / 8, diag)
 end
-	
+
 HealthPack = {x, y, val}
 
 function HealthPack:new(x, y, id)
