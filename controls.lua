@@ -30,14 +30,15 @@ local function applyvel(vel, deg, dt)
 	realdy = realdy + vel * math.sin(deg)
 	norm = math.sqrt(realdx^2 + realdy^2)
 	if norm > 10 then
-		realdx = realdx / norm * 10
-		realdy = realdy / norm * 10
+		realdx = realdx / norm * (10 + (norm - 10) / 2)
+		realdy = realdy / norm * (10 + (norm - 10) / 2)
 	end
 	norm = math.sqrt(realdx^2 + realdy^2)
 	return realdx, realdy
 end
 
 local deg = 0
+local cd = 0
 dirx, diry = 0, 0
 function controls.getInput(dt)
 	local dx,dy = 0,0
@@ -54,7 +55,13 @@ function controls.getInput(dt)
 		vel = 0
 	end
 	if vel < 0 or vel > 10 then
-		vel = vel < 0 and 0 or 5
+		vel = vel < 0 and 0 or 10
+	end
+	if cd > 0 then
+		cd = cd - dt
+	elseif isDown('down') or isDown('space') then
+		vel = vel + 100
+		cd = 2
 	end
 	dx, dy = applyvel(vel, deg, dt)
 	Player.x, Player.y = Player.x+dx, Player.y+dy

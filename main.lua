@@ -47,6 +47,7 @@ function love.draw()
 	lg.setColor(1, 0, 0, 1)
 	lg.print("Health : "..math.floor(Player.health), 0, 0)
 	lg.print("Switches left : "..iter.totalSwitches, 0, 15)
+	lg.print("Norm : "..norm, 0, 30)
 end
 
 function love.update(dt)
