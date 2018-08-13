@@ -29,7 +29,8 @@ function vfx.update(dt)
 	smoke:update(dt)
 	void:update(dt)
 	do
-		local r, g, b = getColor(colorTab[(iter.id + 2) % 3 + 1], False)
+		local i = transition and 0 or 2
+		local r, g, b = getColor(colorTab[(iter.id + i) % 3 + 1], False)
 		void:setColors(r, g, b, 1, r, g, b, 0)
 		smoke:setColors(r, g, b, 1, r, g, b, 0)
 	end

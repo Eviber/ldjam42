@@ -69,8 +69,14 @@ function love.draw()
 			generateIter(iter.id + 1)
 			norm = 0
 		end
+		lg.setColor(1,1,1,1)
+		lg.draw(smoke)
+		callColor(colorTab[(iter.id + 0) % 3 + 1])
+		realdx, realdy = 0, 0
+		norm = 0
+	else
+		callColor(colorTab[(iter.id + 2) % 3 + 1])
 	end
-	callColor(colorTab[(iter.id + 2) % 3 + 1])
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('fill', Player.x, Player.y, 10, 10)
 	lg.setColor(1, 0, 0, 1)
@@ -83,8 +89,8 @@ function love.draw()
 end
 
 function love.update(dt)
+	vfx.update(dt)
 	if not transition and not gameOver then
-		vfx.update(dt)
 		posReact(dt)
 		if iter.id ~= 1 then reduceField(iter, dt) end
 		if iter.decay ~= 0 then

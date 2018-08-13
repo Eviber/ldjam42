@@ -16,7 +16,7 @@ local function oob()
 end
 
 norm = 0
-local realdx, realdy = 0, 0
+realdx, realdy = 0, 0
 local function applyvel(vel, deg, dt)
 	if norm > 0 then
 		realdx = realdx / norm * (norm - 10 * dt)
