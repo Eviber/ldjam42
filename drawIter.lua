@@ -39,20 +39,20 @@ function printGameOver()
 end
 
 function printHealth()
-	lg.setColor(1, 0, 0, 1)
+	lg.setColor(1, 0, 0, 0.5)
 	if Player.health > 75 then
-		lg.rectangle('fill', 86, 5, Player.health - 75, 10)
-		lg.rectangle('fill', 59, 5, 25, 10)
-		lg.rectangle('fill', 32, 5, 25, 10)
-		lg.rectangle('fill', 5, 5, 25, 10)
+		lg.rectangle('fill', 161, 5, (Player.health - 75) * 2, 10)
+		lg.rectangle('fill', 109, 5, 50, 10)
+		lg.rectangle('fill', 57, 5, 50, 10)
+		lg.rectangle('fill', 5, 5, 50, 10)
 	elseif Player.health > 50 then
-		lg.rectangle('fill', 59, 5, Player.health - 50, 10)
-		lg.rectangle('fill', 32, 5, 25, 10)
-		lg.rectangle('fill', 5, 5, 25, 10)
+		lg.rectangle('fill', 109, 5, (Player.health - 50) * 2, 10)
+		lg.rectangle('fill', 57, 5, 50, 10)
+		lg.rectangle('fill', 5, 5, 50, 10)
 	elseif Player.health > 25 then
-		lg.rectangle('fill', 32, 5, Player.health - 25, 10)
-		lg.rectangle('fill', 5, 5, 25, 10)
+		lg.rectangle('fill', 57, 5, (Player.health - 25) * 2, 10)
+		lg.rectangle('fill', 5, 5, 50, 10)
 	else
-		lg.rectangle('fill', 5, 5, Player.health, 10)
+		lg.rectangle('fill', 5, 5, Player.health * 2, 10)
 	end
 end
