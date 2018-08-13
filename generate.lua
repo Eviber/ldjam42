@@ -27,12 +27,11 @@ end
 
 function generateSwitch()
 	local x, y
-	local OK = false
 	local occupied = true
 	while (occupied == true) do
 		occupied = false
-		x = math.random(W/8)
-		y = math.random(H/8)
+		x = math.random(W/8 - 1)
+		y = math.random(H/8 - 1)
 		if getDist(x, y) < iter.decay then
 			for a, b in pairs(itemList) do
 				if b.x == x and b.y == y then
@@ -42,6 +41,7 @@ function generateSwitch()
 			end
 			if occupied == false then
 				Switch:new(x, y, currentId)
+				print ("Switch generated "..currentId)
 				currentId = currentId + 1
 			end
 		end

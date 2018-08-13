@@ -136,8 +136,8 @@ function Switch:interact(obj)
 			Exit.changeLock(itemList[2], false)
 			p[2]:start()
 			p[2]:emit(100)
-		--elseif iter.totalSwitches >= 3 then
-			--genSwitch
+		elseif iter.totalSwitches >= 3 then
+			generateSwitch()
 		end
 		p[self.id]:stop()
 		Player.health = Player.health + 1 > 100 and 100 or Player.health + 1

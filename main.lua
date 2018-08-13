@@ -13,6 +13,12 @@ local items = require "items"
 local drawTransi = require "drawTransi"
 --local debug = require "debug"
 
+function getDist(x, y)
+	local dx = x * tileDim + tileDim / 2 - W / 2
+	local dy = y * tileDim + tileDim / 2 - H / 2
+	return math.sqrt(dx^2 + dy^2)
+end
+
 function love.load()
 	love.window.setMode(1280, 800)
 	W, H = lg.getWidth(), lg.getHeight()
