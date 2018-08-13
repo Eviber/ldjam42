@@ -8,8 +8,8 @@ function generateIter(id)
 	Exit:new(W / (tileDim * 2), H / (tileDim * 2), 2, 0)
 	maxSwitches = iter.id == 2 and 1 or 2
 	for i = 0, maxSwitches do
-		x = math.random(W/8)
-		y = math.random(H/8)
+		x = math.random(W/8 - 1)
+		y = math.random(H/8 - 1)
 		for a, b in pairs(itemList) do
 			if b.x == x and b.y == y then
 				occupied = true
