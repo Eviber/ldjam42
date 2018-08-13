@@ -24,7 +24,7 @@ function love.load()
 	W, H = lg.getWidth(), lg.getHeight()
 	w,h = 5,5
 	diag = math.sqrt((W/2)^2 + (H/2)^2)
-	Player = {x = W/2, y = H/2, w = w, h = h, health = 100}
+	Player = {x = W/4, y = H/2, w = w, h = h, health = 100}
 	iter = Iteration:new(1, W / 8, H / 8, diag)
 	tileDim = math.min(W / iter.width, H / iter.height)
 	vfx.load()
@@ -36,12 +36,10 @@ function love.load()
 	gameOver = false
 	uiFont = lg.setNewFont(12)
 	-------------------
-	door = Exit:new(W / (tileDim * 2) + 10, H / (tileDim * 2), 2)
+	door = Exit:new(W / (tileDim * 2), H / (tileDim * 2), 2)
 	--Exit.changeLock(door, false)
 	--pack = HealthPack:new(30, 50, 3)
-	crafter = RealityCrafter:new(50, 30, 4)
 	switch1 = Switch:new(80, 80, 5)
-	switch2 = Switch:new(80, 85, 6)
 	-------------------
 	tuto = lg.newImage("tuto.png")
 end
@@ -75,10 +73,11 @@ function love.draw()
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('line', Player.x, Player.y, 20, 20)
 	lg.setColor(1, 0, 0, 1)
-	lg.setFont(uiFont)
-	lg.print("Health : "..math.floor(Player.health), 0, 0)
-	lg.print("Switches left : "..iter.totalSwitches, 0, 15)
-	lg.print("Norm : "..norm, 0, 30)
+	printHealth()
+	--lg.setFont(uiFont)
+	--lg.print("Health : "..math.floor(Player.health), 0, 0)
+	--lg.print("Switches left : "..iter.totalSwitches, 0, 15)
+	--lg.print("Norm : "..norm, 0, 30)
 	if gameOver == true then printGameOver() end
 end
 
