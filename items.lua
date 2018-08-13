@@ -6,12 +6,12 @@ function Exit:new(x, y, id)
 	local o = {}
 	setmetatable(o, self)
 	self.__index = self
-	self.x = x
-	self.y = y
-	self.val = 2
-	self.locked = true
+	o.x = x
+	o.y = y
+	o.val = 2
+	o.locked = true
 	iter.field[x][y] = id
-	itemList[id] = self
+	itemList[id] = o
 	return o
 end
 
@@ -35,11 +35,11 @@ function HealthPack:new(x, y, id, val)
 	local o = {}
 	setmetatable(o, self)
 	self.__index = self
-	self.x = x
-	self.y = y
-	self.val = 3
+	o.x = x
+	o.y = y
+	o.val = 3
 	iter.field[x][y] = id
-	itemList[id] = self
+	itemList[id] = o
 	return o
 end
 
@@ -56,11 +56,11 @@ function RealityCrafter:new(x, y, id)
 	local o = {}
 	setmetatable(o, self)
 	self.__index = self
-	self.x = x
-	self.y = y
-	self.val = 4
+	o.x = x
+	o.y = y
+	o.val = 4
 	iter.field[x][y] = id
-	itemList[id] = self
+	itemList[id] = o
 	return o
 end
 
@@ -76,19 +76,20 @@ Switch.__index = Switch
 function Switch:new(x, y, id)
 	local o = {}
 	setmetatable(o, self)
-	--self.__index = self
-	self.x = x
-	self.y = y
-	self.val = 5
-	self.activated = false
+	o.__index = self
+	o.x = x
+	o.y = y
+	o.val = 5
+	o.activated = false
 	iter.field[x][y] = id
-	itemList[id] = self
+	itemList[id] = o
 	return o
 end
 
 function Switch:interact(obj)
-	--self.__index = self
+	self.__index = self
 	if self.activated == false then
+	print("activated")
 		self.activated = true
 		iter.totalSwitches = iter.totalSwitches - 1
 		if iter.totalSwitches <= 0 then
