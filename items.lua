@@ -94,6 +94,8 @@ function Switch:interact(obj)
 		iter.totalSwitches = iter.totalSwitches - 1
 		if iter.totalSwitches <= 0 then
 			Exit.changeLock(itemList[2], false)
+		--elseif iter.totalSwitches >= 3 then
+			--genSwitch
 		end
 		Player.health = Player.health + 1 > 100 and 100 or Player.health + 1
 		iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.id
