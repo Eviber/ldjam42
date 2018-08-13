@@ -1,5 +1,5 @@
 all:
-	zip	-r fractab.zip *.lua shack/ pixel.png
+	zip	-r fractab.zip *.lua shack/ pixel.png sfx/
 	mv fractab.zip releases/fractab.love
 
 win32: all
