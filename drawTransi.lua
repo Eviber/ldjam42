@@ -1,4 +1,4 @@
-genIter = require "genIter"
+generate = require "generate"
 
 function drawTransition()
 	transition = false

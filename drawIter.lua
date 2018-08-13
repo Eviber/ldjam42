@@ -21,7 +21,7 @@ function drawField (source)
 				lg.setColor(0, 1, 0, 1)
 			elseif math.abs(iter.field[i][j]) == 4 then
 				lg.setColor(1, 0, 0, 1)
-			elseif math.abs(iter.field[i][j]) == 5 or math.abs(iter.field[i][j]) == 6 then
+			elseif math.abs(iter.field[i][j]) == 5 or math.abs(iter.field[i][j]) == 6 or math.abs(iter.field[i][j]) == 7 then
 				lg.setColor(1, 1, 0, 1)
 			else
 				callColor(colorTab[((iter.id + 1) % 3) + 1])
