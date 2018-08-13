@@ -15,9 +15,9 @@ local function oob()
 	end
 end
 
+norm = 0
 local realdx, realdy = 0, 0
 local function applyvel(vel, deg, dt)
-	local norm = math.sqrt(realdx^2 + realdy^2)
 	if norm > 0 then
 		realdx = realdx / norm * (norm - 10 * dt)
 		realdy = realdy / norm * (norm - 10 * dt)
@@ -33,6 +33,7 @@ local function applyvel(vel, deg, dt)
 		realdx = realdx / norm * 10
 		realdy = realdy / norm * 10
 	end
+	norm = math.sqrt(realdx^2 + realdy^2)
 	return realdx, realdy
 end
 
