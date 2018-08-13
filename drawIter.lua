@@ -36,6 +36,9 @@ function printGameOver()
 	gameOverFont = lg.setNewFont(50)
 	lg.setFont(gameOverFont)
 	lg.print("Game Over !", W/2 - 160, H/2 - 50)
+	retryFont = lg.setNewFont(35)
+	lg.setFont(retryFont)
+	lg.print("Press space to restart", W/2 - 190, H/2 + 50)
 end
 
 function printHealth()
