@@ -39,7 +39,7 @@ function Field:new (width, height)
 	return self
 end
 
-function Iteration:new (id, width, height, decay, totalSwitches)
+function Iteration:new (id, width, height, decay)
 	setmetatable({}, Iteration)
 	self.id = id
 	self.width = width or self.width
