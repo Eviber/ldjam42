@@ -44,18 +44,18 @@ end
 function printHealth()
 	lg.setColor(1, 0, 0, 0.5)
 	if Player.health > 75 then
-		lg.rectangle('fill', 161, 5, (Player.health - 75) * 2, 10)
-		lg.rectangle('fill', 109, 5, 50, 10)
-		lg.rectangle('fill', 57, 5, 50, 10)
-		lg.rectangle('fill', 5, 5, 50, 10)
+		lg.rectangle('fill', 855, 15, (Player.health - 75) * 8, 25)
+		lg.rectangle('fill', 640, 15, 200, 25)
+		lg.rectangle('fill', 425, 15, 200, 25)
+		lg.rectangle('fill', 210, 15, 200, 25)
 	elseif Player.health > 50 then
-		lg.rectangle('fill', 109, 5, (Player.health - 50) * 2, 10)
-		lg.rectangle('fill', 57, 5, 50, 10)
-		lg.rectangle('fill', 5, 5, 50, 10)
+		lg.rectangle('fill', 640, 15, (Player.health - 50) * 8, 25)
+		lg.rectangle('fill', 425, 15, 200, 25)
+		lg.rectangle('fill', 210, 15, 200, 25)
 	elseif Player.health > 25 then
-		lg.rectangle('fill', 57, 5, (Player.health - 25) * 2, 10)
-		lg.rectangle('fill', 5, 5, 50, 10)
+		lg.rectangle('fill', 425, 15, (Player.health - 25) * 8, 25)
+		lg.rectangle('fill', 210, 15, 200, 25)
 	else
-		lg.rectangle('fill', 5, 5, Player.health * 2, 10)
+		lg.rectangle('fill', 210, 15, Player.health * 8, 25)
 	end
 end
