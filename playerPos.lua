@@ -20,8 +20,9 @@ function posReact(dt)
 	else
 		immunityTimer = 0
 	end
-	if math.abs(iter.field[tileX][tileY]) > 1 then
-		itemList[math.abs(iter.field[tileX][tileY])].interact(itemList[math.abs(iter.field[tileX][tileY])])
+	local val = math.abs(iter.field[tileX][tileY])
+	if val > 1 then
+		itemList[val]:interact(itemList[val])
 	end
 end
 

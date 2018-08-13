@@ -2,7 +2,7 @@ Exit = {x, y, val, locked}
 
 function Exit:new(x, y, id)
 	local o = {}
-	setmetatable(o, Exit)
+	setmetatable(o, self)
 	self.__index = self
 	self.x = x
 	self.y = y
@@ -20,15 +20,17 @@ end
 
 function Exit:interact(obj)
 	self.__index = self
-	Player.health = Player.health + 10 > 100 and 100 or Player.health + 10
-	iter = Iteration:new(iter.id - 1, W / 8, H / 8, diag)
+	if self.locked == false then
+		Player.health = Player.health + 10 > 100 and 100 or Player.health + 10
+		iter = Iteration:new(iter.id - 1, W / 8, H / 8, diag, 2)
+	end
 end
 	
 HealthPack = {x, y, val}
 
-function HealthPack:new(x, y, id)
+function HealthPack:new(x, y, id, val)
 	local o = {}
-	setmetatable(o, HealthPack)
+	setmetatable(o, self)
 	self.__index = self
 	self.x = x
 	self.y = y
@@ -44,11 +46,11 @@ function HealthPack:interact(obj)
 	iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.val
 end
 
-RealityCrafter = {x, y, id}
+RealityCrafter = {x, y, id, val}
 
 function RealityCrafter:new(x, y, id)
 	local o = {}
-	setmetatable(o, RealityCrafter)
+	setmetatable(o, self)
 	self.__index = self
 	self.x = x
 	self.y = y
@@ -58,22 +60,35 @@ function RealityCrafter:new(x, y, id)
 	return o
 end
 
-function RealityCrafter:interact()
+function RealityCrafter:interact(obj)
 	self.__index = self
 	realityBuffer = realityBuffer + 70
 	iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.val
 end
 
-Switch = {x, y, id}
+Switch = {x, y, id, val, activated}
+Switch.__index = Switch
 
---[[function Switch:new(x, y, id)
+function Switch:new(x, y, id)
 	local o = {}
-	setmetatable(o, Switch)
-	self.__index = self
+	setmetatable(o, self)
+	--self.__index = self
 	self.x = x
 	self.y = y
 	self.val = 5
 	self.activated = false
 	iter.field[x][y] = id
 	itemList[id] = self
-	return o]]
+	return o
+end
+
+function Switch:interact(obj)
+	--self.__index = self
+	if self.activated == false then
+		self.activated = true
+		iter.totalSwitches = iter.totalSwitches - 1
+		if iter.totalSwitches <= 0 then
+			Exit.changeLock(itemList[2], false)
+		end
+	end
+end	

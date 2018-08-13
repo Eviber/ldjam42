@@ -1,6 +1,6 @@
 local lg = love.graphics
 --debug = require "debug"
-Iteration = {id = 0, width = 10, height = 10, decay = 1, field = {}}
+Iteration = {id = 0, width = 10, height = 10, decay = 1, totalSwitches = 0, field = {}}
 Field = {}
 Tile = {x, y, state = 1}
 
@@ -39,12 +39,13 @@ function Field:new (width, height)
 	return self
 end
 
-function Iteration:new (id, width, height, decay)
+function Iteration:new (id, width, height, decay, totalSwitches)
 	setmetatable({}, Iteration)
 	self.id = id
 	self.width = width or self.width
 	self.height = height or self.height
 	self.decay = decay or self.decay
+	self.totalSwitches = totalSwitches or self.totalSwitches
 	self.field = Field:new(self.width, self.height)
 	return self
 end

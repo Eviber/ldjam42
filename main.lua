@@ -15,17 +15,19 @@ function love.load()
 	diag = math.sqrt((W/2)^2 + (H/2)^2)
 	w,h = 5,5
 	Player = {x = W/2, y = H/2, w = w, h = h, health = 100}
-	iter = Iteration:new(0, W / 8, H / 8, diag)
+	iter = Iteration:new(0, W / 8, H / 8, diag, 2)
 	tileDim = math.min(W / iter.width, H / iter.height)
 	timeSum = 0
 	itemList = {}
 	realityBuffer = 0
 	
 	-------------------
-	door = Exit:new(W / (tileDim * 2) + 10, H / (tileDim * 2) ,2)
-	Exit.changeLock(door, false)
+	door = Exit:new(W / (tileDim * 2) + 10, H / (tileDim * 2), 2)
+	--Exit.changeLock(door, false)
 	pack = HealthPack:new(30, 50, 3)
 	crafter = RealityCrafter:new(50, 30, 4)
+	switch1 = Switch:new(80, 80, 5)
+	switch2 = Switch:new(80, 85, 6)
 	-------------------
 end
 
@@ -40,6 +42,7 @@ function love.draw()
 	end]]
 	lg.setColor(1, 0, 0, 1)
 	lg.print("Health : "..math.floor(Player.health), 0, 0)
+	lg.print("Switches left : "..iter.totalSwitches, 0, 15)
 end
 
 function love.update(dt)

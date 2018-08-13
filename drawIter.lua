@@ -18,6 +18,8 @@ function drawField (source)
 				lg.setColor(0, 1, 0, 1)
 			elseif math.abs(iter.field[i][j]) == 4 then
 				lg.setColor(1, 0, 0, 1)
+			elseif math.abs(iter.field[i][j]) == 5 or math.abs(iter.field[i][j]) == 6 then
+				lg.setColor(1, 1, 0, 1)
 			end
 			if iter.field[i][j] ~= -1 then
 				lg.rectangle('fill', i * tileDim + (W - iter.width * tileDim) / 2, j * tileDim + (H - iter.height * tileDim) / 2, tileDim, tileDim)
