@@ -18,7 +18,7 @@ function love.load()
 	w,h = 5,5
 	diag = math.sqrt((W/2)^2 + (H/2)^2)
 	Player = {x = W/2, y = H/2, w = w, h = h, health = 100}
-	iter = Iteration:new(0, W / 8, H / 8, diag, 2)
+	iter = Iteration:new(1, W / 8, H / 8, diag, 2)
 	tileDim = math.min(W / iter.width, H / iter.height)
 	vfx.load()
 	timeSum = 0
@@ -28,7 +28,7 @@ function love.load()
 	-------------------
 	door = Exit:new(W / (tileDim * 2) + 10, H / (tileDim * 2), 2)
 	--Exit.changeLock(door, false)
-	pack = HealthPack:new(30, 50, 3)
+	--pack = HealthPack:new(30, 50, 3)
 	crafter = RealityCrafter:new(50, 30, 4)
 	switch1 = Switch:new(80, 80, 5)
 	switch2 = Switch:new(80, 85, 6)

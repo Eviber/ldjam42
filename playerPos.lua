@@ -15,11 +15,12 @@ function posReact(dt)
 	if iter.field[tileX][tileY] < 0 then
 		immunityTimer = immunityTimer + dt
 		if immunityTimer >= 0.5 then
-			voidDamage()
+			voidDamage(dt)
 			screen:setShake(2)
 		end
 	else
 		immunityTimer = 0
+		Player.health = healthRegen(dt)
 	end
 	for i = -3, 3 do
 		for j = -3, 3 do

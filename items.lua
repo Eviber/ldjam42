@@ -25,11 +25,11 @@ function Exit:interact(obj)
 	if self.locked == false then
 		Player.health = Player.health + 10 > 100 and 100 or Player.health + 10
 		iter = Iteration:new(iter.id - 1, W / 8, H / 8, diag, 2)
-		door = Exit:new(W / (tileDim * 2), H / (tileDim * 2) ,2)
+		door = Exit:new(W / (tileDim * 2), H / (tileDim * 2), 2, 0)
 	end
 end
 
-HealthPack = {x, y, val}
+--[[HealthPack = {x, y, val}
 
 function HealthPack:new(x, y, id, val)
 	local o = {}
@@ -46,9 +46,9 @@ end
 function HealthPack:interact(obj)
 	self.__index = self
 	Player.health = Player.health + 30 > 100 and 100 or Player.health + 30
-	iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.val
+	iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.id
 	sfx["beep"]:play()
-end
+end]]
 
 RealityCrafter = {x, y, id, val}
 
@@ -59,6 +59,7 @@ function RealityCrafter:new(x, y, id)
 	o.x = x
 	o.y = y
 	o.val = 4
+	o.id = id
 	iter.field[x][y] = id
 	itemList[id] = o
 	return o
@@ -80,6 +81,7 @@ function Switch:new(x, y, id)
 	o.x = x
 	o.y = y
 	o.val = 5
+	o.id = id
 	o.activated = false
 	iter.field[x][y] = id
 	itemList[id] = o
@@ -89,11 +91,11 @@ end
 function Switch:interact(obj)
 	self.__index = self
 	if self.activated == false then
-	print("activated")
 		self.activated = true
 		iter.totalSwitches = iter.totalSwitches - 1
 		if iter.totalSwitches <= 0 then
 			Exit.changeLock(itemList[2], false)
 		end
+		iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.id
 	end
 end	
