@@ -24,8 +24,7 @@ function Exit:interact(obj)
 	self.__index = self
 	if self.locked == false then
 		Player.health = Player.health + 10 > 100 and 100 or Player.health + 10
-		iter = Iteration:new(iter.id - 1, W / 8, H / 8, diag, 2)
-		door = Exit:new(W / (tileDim * 2), H / (tileDim * 2), 2, 0)
+		transition = true
 	end
 end
 
