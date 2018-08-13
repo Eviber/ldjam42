@@ -45,7 +45,7 @@ function Iteration:new (id, width, height, decay, totalSwitches)
 	self.width = width or self.width
 	self.height = height or self.height
 	self.decay = decay or self.decay
-	self.totalSwitches = totalSwitches or self.totalSwitches
+	self.totalSwitches = id
 	self.field = Field:new(self.width, self.height)
 	return self
 end
