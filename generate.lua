@@ -43,6 +43,7 @@ function generateSwitch()
 	local x, y
 	local occupied = true
 	while (occupied == true) do
+		print ("wow")
 		occupied = false
 		x = math.random(W/8 - 1)
 		y = math.random(H/8 - 1)
@@ -58,6 +59,8 @@ function generateSwitch()
 				print ("Switch generated "..currentId)
 				currentId = currentId + 1
 			end
+		else
+			occupied = true
 		end
 	end
 end
