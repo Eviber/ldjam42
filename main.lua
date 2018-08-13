@@ -71,7 +71,7 @@ function love.draw()
 	end
 	lg.setColor(0,0,1,255)
 	lg.line(Player.x, Player.y, dirx, diry)
-	lg.ellipse('line', Player.x, Player.y, 20, 20)
+	lg.ellipse('line', Player.x, Player.y, 30, 30)
 	lg.setColor(1, 0, 0, 1)
 	printHealth()
 	--lg.setFont(uiFont)

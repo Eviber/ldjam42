@@ -24,13 +24,13 @@ function posReact(dt)
 		immunityTimer = 0
 		Player.health = healthRegen(dt)
 	end
-	for i = -3, 3 do
-		for j = -3, 3 do
+	for i = -6, 6 do
+		for j = -6, 6 do
 			local x, y = tileX + i, tileY + j
 			if x >= 0 and y >= 0 and x < iter.width and y < iter.height then
 				local val = math.abs(iter.field[tileX + i][tileY + j])
 				local xx, yy = x * tileDim + tileDim / 2, y * tileDim + tileDim / 2
-				if math.sqrt((xx - Player.x)^2 + (yy - Player.y)^2) < 20 and val > 1 and itemList[val].val ~= 4 then
+				if math.sqrt((xx - Player.x)^2 + (yy - Player.y)^2) < 30 and val > 1 and itemList[val].val ~= 4 then
 					itemList[val].interact(itemList[val])
 				end
 			end
