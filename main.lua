@@ -41,16 +41,22 @@ function love.load()
 	switch1 = Switch:new(80, 80, 5)
 	switch2 = Switch:new(80, 85, 6)
 	-------------------
+	tuto = lg.newImage("tuto.png")
 end
 
 transiRad = 0
 function love.draw()
 	screen:apply()
-	callColor(colorTab[(iter.id + 0) % 3 + 1])
-	lg.rectangle("fill", 0, 0, W, H)
-	lg.setColor(1,1,1,1)
-	lg.draw(void)
-	drawField(iter)
+	if iter.id ~= 1 then
+		callColor(colorTab[(iter.id + 0) % 3 + 1])
+		lg.rectangle("fill", 0, 0, W, H)
+		lg.setColor(1,1,1,1)
+		lg.draw(void)
+		drawField(iter)
+	else
+		lg.setColor(1,1,1,1)
+		lg.draw(tuto, 0, 0)
+	end
 	vfx.draw()
 	--	lg.circle("line", W/2, H/2, iter.decay)
 	if transition == true then
@@ -76,7 +82,7 @@ function love.update(dt)
 	if not transition then
 		vfx.update(dt)
 		posReact(dt)
-		reduceField(iter, dt)
+		if iter.id ~= 1 then reduceField(iter, dt) end
 		if iter.decay ~= 0 then
 			if realityBuffer == 0 then
 				iter.decay = iter.decay - 20 * dt
