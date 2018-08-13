@@ -2,6 +2,7 @@ Exit = {x, y, val, locked}
 
 sfx = require "sfx"
 require "vfx"
+require "drawIter"
 
 function Exit:new(x, y, id)
 	local o = {}
@@ -18,7 +19,11 @@ function Exit:new(x, y, id)
 	p[id]:setParticleLifetime(1)
 	p[id]:setSizes(9, 0)
 	p[id]:setLinearAcceleration(1, 1, -1, -1)
-	p[id]:setColors(0, 0, 1, 1)--, 0, 0, 1, 0)
+	print()
+	do
+		c = colorTab[(iter.id + 2) % 3 + 1]
+		p[id]:setColors(c.r, c.g, c.b, c.a)--, 0, 0, 1, 0)
+	end
 	p[id]:setEmissionRate(200)
 	p[id]:setPosition(x * tileDim + tileDim/2, y * tileDim + tileDim/2)
 	p[id]:setTangentialAcceleration(500)
