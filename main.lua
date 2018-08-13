@@ -43,21 +43,29 @@ function love.load()
 	-------------------
 end
 
+transiRad = 0
 function love.draw()
 	screen:apply()
-	callColor(colorTab[(iter.id + 1) % 3 + 1])
+	callColor(colorTab[(iter.id + 0) % 3 + 1])
 	lg.rectangle("fill", 0, 0, W, H)
 	lg.setColor(1,1,1,1)
 	lg.draw(void)
 	drawField(iter)
 	vfx.draw()
 	--	lg.circle("line", W/2, H/2, iter.decay)
+	if transition == true then
+		callColor(colorTab[(iter.id + 2) % 3 + 1])
+		lg.circle('fill', W/2, H/2, transiRad)
+		if transiRad > diag then
+			transition = false
+			transiRad = 0
+			generateIter(iter.id + 1)
+			norm = 0
+		end
+	end
 	lg.setColor(0,0,1,255)
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('line', Player.x, Player.y, 20, 20)
-	if transition == true then
-		drawTransition()
-	end
 	lg.setColor(1, 0, 0, 1)
 	lg.print("Health : "..math.floor(Player.health), 0, 0)
 	lg.print("Switches left : "..iter.totalSwitches, 0, 15)
@@ -65,18 +73,22 @@ function love.draw()
 end
 
 function love.update(dt)
-	vfx.update(dt)
-	posReact(dt)
-	reduceField(iter, dt)
-	if iter.decay ~= 0 then
-		if realityBuffer == 0 then
-			iter.decay = iter.decay - 20 * dt
-		else
-			iter.decay = iter.decay + 20 * dt
-			realityBuffer = realityBuffer - 20 * dt < 0 and 0 or realityBuffer - 20 * dt
+	if not transition then
+		vfx.update(dt)
+		posReact(dt)
+		reduceField(iter, dt)
+		if iter.decay ~= 0 then
+			if realityBuffer == 0 then
+				iter.decay = iter.decay - 20 * dt
+			else
+				iter.decay = iter.decay + 20 * dt
+				realityBuffer = realityBuffer - 20 * dt < 0 and 0 or realityBuffer - 20 * dt
+			end
 		end
+		if iter.decay < 0 then iter.decay = 0 end
+		controls.getInput(dt)
+	else
+		transiRad = transiRad + diag * dt
 	end
-	if iter.decay < 0 then iter.decay = 0 end
-	controls.getInput(dt)
 	sfx.update()
 end
