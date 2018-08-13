@@ -8,23 +8,14 @@ colorTab = {white, grey, black}
 
 function drawField (source)
 	local i, j
-	lg.setColor(255, 255, 255, 255)
 	for i = 0, iter.width - 1 do
 		for j = 0, iter.height - 1 do
 			if iter.field[i][j] == 1 then
-				callColor(colorTab[(iter.id % 3) + 1])
+				callColor(colorTab[((iter.id + 1) % 3) + 1])
 				--[[else
 				print("tile ["..i.." "..j.."]")]]
 			elseif math.abs(iter.field[i][j]) == 2 then
 				callColor(colorTab[((iter.id + 2) % 3) + 1])
-			elseif math.abs(iter.field[i][j]) == 3 then
-				lg.setColor(0, 1, 0, 1)
-			elseif math.abs(iter.field[i][j]) == 4 then
-				lg.setColor(1, 0, 0, 1)
-			elseif math.abs(iter.field[i][j]) == 5 or math.abs(iter.field[i][j]) == 6 or math.abs(iter.field[i][j]) == 7 then
-				lg.setColor(1, 1, 0, 1)
-			else
-				callColor(colorTab[((iter.id + 1) % 3) + 1])
 			end
 			if iter.field[i][j] ~= -1 then
 				lg.rectangle('fill', i * tileDim + (W - iter.width * tileDim) / 2, j * tileDim + (H - iter.height * tileDim) / 2, tileDim, tileDim)
