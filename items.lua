@@ -78,7 +78,7 @@ RealityCrafter = {x, y, id, val}
 function RealityCrafter:new(x, y, id)
 	local o = {}
 	setmetatable(o, self)
-	self.__index = self
+	o.__index = self
 	o.x = x
 	o.y = y
 	o.val = 4
@@ -98,7 +98,7 @@ end
 function RealityCrafter:interact(obj)
 	self.__index = self
 	realityBuffer = realityBuffer + 70
-	iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.val
+	iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.id
 	p[self.id]:stop()
 end
 
