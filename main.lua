@@ -30,6 +30,7 @@ function love.load()
 	vfx.load()
 	timeSum = 0
 	itemList = {}
+	p = {}
 	realityBuffer = 0
 	sfx.preload()
 	transition = nil
@@ -98,6 +99,10 @@ function love.update(dt)
 		controls.getInput(dt)
 	elseif transition then
 		transiRad = transiRad + diag * dt
+	elseif gameOver then
+		if isDown('space') then
+			love.load()
+		end
 	end
 	sfx.update()
 end
