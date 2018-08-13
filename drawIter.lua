@@ -30,3 +30,10 @@ function drawField (source)
 	lg.rectangle('fill', (W - iter.width * tileDim) / 2, (j * tileDim) - 1 + (H - iter.height * tileDim) / 2, W - (W - iter.width * tileDim), 2)
 	end]]
 end
+
+function printGameOver()
+	lg.setColor(1, 0, 0, 1)
+	gameOverFont = lg.setNewFont(50)
+	lg.setFont(gameOverFont)
+	lg.print("Game Over !", W/2 - 160, H/2 - 50)
+end

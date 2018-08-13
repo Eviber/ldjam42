@@ -4,6 +4,7 @@ local tileX
 local tileY
 local immunityTimer
 
+
 function getPos(x, y)
 	tileX = math.floor(x / 8)
 	tileY = math.floor(y / 8)
@@ -17,6 +18,7 @@ function posReact(dt)
 		if immunityTimer >= 0.5 then
 			voidDamage(dt)
 			screen:setShake(2)
+			if Player.health <= 0 then gameOver = true end
 		end
 	else
 		immunityTimer = 0

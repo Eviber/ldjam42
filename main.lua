@@ -33,6 +33,8 @@ function love.load()
 	realityBuffer = 0
 	sfx.preload()
 	transition = nil
+	gameOver = false
+	uiFont = lg.setNewFont(12)
 	-------------------
 	door = Exit:new(W / (tileDim * 2) + 10, H / (tileDim * 2), 2)
 	--Exit.changeLock(door, false)
@@ -67,13 +69,15 @@ function love.draw()
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('line', Player.x, Player.y, 20, 20)
 	lg.setColor(1, 0, 0, 1)
+	lg.setFont(uiFont)
 	lg.print("Health : "..math.floor(Player.health), 0, 0)
 	lg.print("Switches left : "..iter.totalSwitches, 0, 15)
 	lg.print("Norm : "..norm, 0, 30)
+	if gameOver == true then printGameOver() end
 end
 
 function love.update(dt)
-	if not transition then
+	if not transition and not gameOver then
 		vfx.update(dt)
 		posReact(dt)
 		reduceField(iter, dt)
@@ -87,7 +91,7 @@ function love.update(dt)
 		end
 		if iter.decay < 0 then iter.decay = 0 end
 		controls.getInput(dt)
-	else
+	elseif transition then
 		transiRad = transiRad + diag * dt
 	end
 	sfx.update()
