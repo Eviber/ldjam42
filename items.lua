@@ -19,7 +19,6 @@ function Exit:new(x, y, id)
 	p[id]:setParticleLifetime(1)
 	p[id]:setSizes(9, 0)
 	p[id]:setLinearAcceleration(1, 1, -1, -1)
-	print()
 	do
 		c = colorTab[(iter.id + 2) % 3 + 1]
 		p[id]:setColors(c.r, c.g, c.b, c.a)--, 0, 0, 1, 0)

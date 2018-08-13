@@ -11,9 +11,6 @@ function drawField (source)
 	lg.setColor(255, 255, 255, 255)
 	for i = 0, iter.width - 1 do
 		for j = 0, iter.height - 1 do
-			if math.sqrt((i * tileDim + tileDim / 2 - W / 2)^2 + (j * tileDim + tileDim / 2 - H / 2)^2) < iter.decay and iter.field[i][j] < 0 then
-				iter.field[i][j] = iter.field[i][j] * -1
-			end
 			if iter.field[i][j] == 1 then
 				callColor(colorTab[(iter.id % 3) + 1])
 				--[[else
@@ -29,9 +26,9 @@ function drawField (source)
 			else
 				callColor(colorTab[((iter.id + 1) % 3) + 1])
 			end
-			--if iter.field[i][j] ~= -1 then
+			if iter.field[i][j] ~= -1 then
 				lg.rectangle('fill', i * tileDim + (W - iter.width * tileDim) / 2, j * tileDim + (H - iter.height * tileDim) / 2, tileDim, tileDim)
-			--end
+			end
 		end
 	end
 	--[[lg.setColor(0, 2, 10, 255)

@@ -37,6 +37,10 @@ end
 
 function love.draw()
 	screen:apply()
+	callColor(colorTab[(iter.id + 1) % 3 + 1])
+	lg.rectangle("fill", 0, 0, W, H)
+	lg.setColor(1,1,1,1)
+	lg.draw(void)
 	drawField(iter)
 	vfx.draw()
 	--	lg.circle("line", W/2, H/2, iter.decay)
