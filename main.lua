@@ -69,9 +69,9 @@ function love.draw()
 			norm = 0
 		end
 	end
-	lg.setColor(0,0,1,255)
+	callColor(colorTab[(iter.id + 2) % 3 + 1])
 	lg.line(Player.x, Player.y, dirx, diry)
-	lg.ellipse('line', Player.x, Player.y, 30, 30)
+	lg.ellipse('fill', Player.x, Player.y, 10, 10)
 	lg.setColor(1, 0, 0, 1)
 	printHealth()
 	--lg.setFont(uiFont)

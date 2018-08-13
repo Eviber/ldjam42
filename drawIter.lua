@@ -1,8 +1,8 @@
 local lg = love.graphics
 colorPicker = require "colorPicker"
 
-white = {r = 1, g = 1, b = 1, a = 1}
-grey = {r = 0.5, g = 0.5, b = 0.5, a = 1}
+white = {r = 0.75, g = 0.75, b = 0.75, a = 1}
+grey = {r = 0.375, g = 0.375, b = 0.375, a = 1}
 black = {r = 0, g = 0, b = 0, a = 1}
 colorTab = {white, grey, black}
 
