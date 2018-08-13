@@ -21,9 +21,17 @@ function posReact(dt)
 	else
 		immunityTimer = 0
 	end
-	local val = math.abs(iter.field[tileX][tileY])
-	if val > 1 then
-		itemList[val].interact(itemList[val])
+	for i = -3, 3 do
+		for j = -3, 3 do
+			local x, y = tileX + i, tileY + j
+			if x >= 0 and y >= 0 then
+				local val = math.abs(iter.field[tileX + i][tileY + j])
+				local xx, yy = x * tileDim - tileDim / 2, y * tileDim - tileDim / 2
+				if math.sqrt((xx - Player.x)^2 + (yy - Player.y)^2) < 20 and val > 1 then
+					itemList[val].interact(itemList[val])
+				end
+			end
+		end
 	end
 end
 
