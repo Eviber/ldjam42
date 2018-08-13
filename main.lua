@@ -69,10 +69,11 @@ function love.draw()
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('line', Player.x, Player.y, 20, 20)
 	lg.setColor(1, 0, 0, 1)
-	lg.setFont(uiFont)
-	lg.print("Health : "..math.floor(Player.health), 0, 0)
-	lg.print("Switches left : "..iter.totalSwitches, 0, 15)
-	lg.print("Norm : "..norm, 0, 30)
+	printHealth()
+	--lg.setFont(uiFont)
+	--lg.print("Health : "..math.floor(Player.health), 0, 0)
+	--lg.print("Switches left : "..iter.totalSwitches, 0, 15)
+	--lg.print("Norm : "..norm, 0, 30)
 	if gameOver == true then printGameOver() end
 end
 

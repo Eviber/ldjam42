@@ -37,3 +37,22 @@ function printGameOver()
 	lg.setFont(gameOverFont)
 	lg.print("Game Over !", W/2 - 160, H/2 - 50)
 end
+
+function printHealth()
+	lg.setColor(1, 0, 0, 1)
+	if Player.health > 75 then
+		lg.rectangle('fill', 86, 5, Player.health - 75, 10)
+		lg.rectangle('fill', 59, 5, 25, 10)
+		lg.rectangle('fill', 32, 5, 25, 10)
+		lg.rectangle('fill', 5, 5, 25, 10)
+	elseif Player.health > 50 then
+		lg.rectangle('fill', 59, 5, Player.health - 50, 10)
+		lg.rectangle('fill', 32, 5, 25, 10)
+		lg.rectangle('fill', 5, 5, 25, 10)
+	elseif Player.health > 25 then
+		lg.rectangle('fill', 32, 5, Player.health - 25, 10)
+		lg.rectangle('fill', 5, 5, 25, 10)
+	else
+		lg.rectangle('fill', 5, 5, Player.health, 10)
+	end
+end
