@@ -48,7 +48,7 @@ function generateSwitch()
 		occupied = false
 		x = math.random(W/8 - 1)
 		y = math.random(H/8 - 1)
-		if getDist(x, y) < iter.decay then
+		if getDist(x, y) < (iter.decay < 100 and 100 or iter.decay)  then
 			for a, b in pairs(itemList) do
 				if b.x == x and b.y == y then
 					occupied = true
