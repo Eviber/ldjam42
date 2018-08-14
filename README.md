@@ -18,3 +18,15 @@ Each level will present you a number of Reality Fragments (yellow) you must coll
 * Up or W : speed up
 * Left/Right or A/D : turn
 * Space or Down : dash!
+
+## TO DO
+* Add screenshots in README
+* Fullscreen
+* Mouse controls
+* Hide health bar at the beginning
+* SFX
+* Tile-based transitions
+* Scoring system
+* Player Sprite
+* Better VFX (key spawn, Dash feedback)
+* (web ?)
