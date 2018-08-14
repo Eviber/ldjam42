@@ -17,8 +17,6 @@ function drawField (source)
 				callColor(colorTab[((iter.id + 1) % 3) + 1])
 				--[[else
 				print("tile ["..i.." "..j.."]")]]
-			elseif math.abs(iter.field[i][j]) == 2 then
-				callColor(colorTab[((iter.id + 2) % 3) + 1])
 			end
 			if iter.field[i][j] ~= -1 then
 				lg.rectangle('fill', i * tileDim + (W - iter.width * tileDim) / 2, j * tileDim + (H - iter.height * tileDim) / 2, tileDim, tileDim)
