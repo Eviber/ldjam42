@@ -74,6 +74,7 @@ function HealthPack:interact(obj)
 end]]
 
 RealityCrafter = {x, y, id, val}
+RealityCrafter.__index = RealityCrafter
 
 function RealityCrafter:new(x, y, id)
 	local o = {}
@@ -114,7 +115,6 @@ function Switch:new(x, y, id)
 	o.val = 5
 	o.id = id
 	o.activated = false
-	o.id = id
 	iter.field[x][y] = id
 	itemList[id] = o
 	p[id] = love.graphics.newParticleSystem(love.graphics.newImage('pixel.png'))

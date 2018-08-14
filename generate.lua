@@ -23,19 +23,21 @@ function generateIter(id)
 			currentId = currentId + 1
 		end
 	end
-	x = math.random(W/8 - 1)
-	y = math.random(H/8 - 1)
-	for a, b in pairs(itemList) do
-		if b.x == x and b.y == y then
-			occupied = true
-			break
+	for i = 0, math.floor(iter.id / 20) do
+		x = math.random(W/8 - 1)
+		y = math.random(H/8 - 1)
+		for a, b in pairs(itemList) do
+			if b.x == x and b.y == y then
+				occupied = true
+				break
+			end
 		end
-	end
-	if occupied == true then
-		i = i - 1
-	else
-		RealityCrafter:new(x, y, currentId)
-		currentId = currentId + 1
+		if occupied == true then
+			i = i - 1
+		else
+			RealityCrafter:new(x, y, currentId)
+			currentId = currentId + 1
+		end
 	end
 end
 
@@ -43,7 +45,6 @@ function generateSwitch()
 	local x, y
 	local occupied = true
 	while (occupied == true) do
-		print ("wow")
 		occupied = false
 		x = math.random(W/8 - 1)
 		y = math.random(H/8 - 1)
@@ -56,7 +57,6 @@ function generateSwitch()
 			end
 			if occupied == false then
 				Switch:new(x, y, currentId)
-				print ("Switch generated "..currentId)
 				currentId = currentId + 1
 			end
 		else

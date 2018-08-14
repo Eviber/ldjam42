@@ -11,7 +11,6 @@ local playerPos = require "playerPos"
 local vfx = require "vfx"
 local items = require "items"
 local drawTransi = require "drawTransi"
---local debug = require "debug"
 
 function getDist(x, y)
 	local dx = x * tileDim + tileDim / 2 - W / 2
@@ -38,8 +37,6 @@ function love.load()
 	uiFont = lg.setNewFont(12)
 	-------------------
 	door = Exit:new(W / (tileDim * 2), H / (tileDim * 2), 2)
-	--Exit.changeLock(door, false)
-	--pack = HealthPack:new(30, 50, 3)
 	switch1 = Switch:new(80, 80, 5)
 	-------------------
 	tuto = lg.newImage("tuto.png")
