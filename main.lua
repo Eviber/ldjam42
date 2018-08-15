@@ -59,6 +59,7 @@ function love.draw()
 	if transition == true then
 		callColor(colorTab[(iter.id + 2) % 3 + 1])
 		lg.circle('fill', W/2, H/2, transiRad)
+		if transiRad > H/2 then blur:stop() end
 		if transiRad > diag then
 			transition = false
 			transiRad = 0
@@ -66,6 +67,7 @@ function love.draw()
 			norm = 0
 		end
 		lg.setColor(1,1,1,1)
+		lg.draw(blur)
 		lg.draw(smoke)
 		callColor(colorTab[(iter.id + 0) % 3 + 1])
 		realdx, realdy = 0, 0
@@ -100,7 +102,7 @@ function love.update(dt)
 		if iter.decay < 0 then iter.decay = 0 end
 		controls.getInput(dt)
 	elseif transition then
-		transiRad = transiRad + diag * dt
+		transiRad = transiRad + diag * dt / 2
 	elseif gameOver then
 		if isDown('space') then
 			love.load()

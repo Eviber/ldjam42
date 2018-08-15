@@ -39,6 +39,7 @@ function Exit:interact(obj)
 	self.__index = self
 	if self.locked == false then
 		Player.health = Player.health + 10 > 100 and 100 or Player.health + 10
+		blur:start()
 		transition = true
 	end
 end
