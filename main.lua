@@ -18,6 +18,7 @@ function getDist(x, y)
 	return math.sqrt(dx^2 + dy^2)
 end
 
+sfx.preload()
 function love.load()
 	W, H = lg.getWidth(), lg.getHeight()
 	w,h = 5,5
@@ -30,7 +31,6 @@ function love.load()
 	itemList = {}
 	p = {}
 	realityBuffer = 0
-	sfx.preload()
 	transition = nil
 	gameOver = false
 	uiFont = lg.setNewFont(12)
