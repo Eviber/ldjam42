@@ -19,7 +19,6 @@ function getDist(x, y)
 end
 
 function love.load()
-	love.window.setMode(1280, 800)
 	W, H = lg.getWidth(), lg.getHeight()
 	w,h = 5,5
 	diag = math.sqrt((W/2)^2 + (H/2)^2)
