@@ -22,7 +22,6 @@ Each level will present you a number of Reality Fragments (yellow) you must coll
 ## TO DO
 * Add screenshots in README
 * Mouse controls
-* Hide health bar at the beginning
 * SFX
 * Tile-based transitions
 * Scoring system

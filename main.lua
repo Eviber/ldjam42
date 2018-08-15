@@ -76,7 +76,7 @@ function love.draw()
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('fill', Player.x, Player.y, 10, 10)
 	lg.setColor(1, 0, 0, 1)
-	printHealth()
+	if iter.id ~= 1 then printHealth() end
 	--lg.setFont(uiFont)
 	--lg.print("Health : "..math.floor(Player.health), 0, 0)
 	--lg.print("Switches left : "..iter.totalSwitches, 0, 15)
