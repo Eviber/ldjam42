@@ -1,3 +1,4 @@
+![screen](screens/screen.png)
 # Hi there!
 
 We're a team of two and proud to present to you our entry for the Ludum Dare 42. Thank you very much for checking it!
@@ -9,18 +10,19 @@ We hope you will enjoy playing it! Feel free to give us any feedback
 
 [Eviber](https://github.com/eviber)([Twitter](https://twitter.com/YouvaDidj)) & [Eclahn](https://github.com/eclahn)([Twitter](https://twitter.com/EHaamu)).
 
+![screen2](screens/screen2.png)
 # The Game
 The Nether has broken into reality and is devouring it ! You must outrun it... by accessing tinier and tinier scales !
 
 Each level will present you a number of Reality Fragments (yellow) you must collect to be able to access a lower scale of reality that the Nether hasn't corrupted... yet. Be quick and leave it before it is devoured, or buy yourself some time by grabbing Reality Crafters (blue) ! You can delve into the Nether but only for a short time, and you might not come back unscathed.
 
+![screen3](screens/screen3.png)
 ## Controls
 * Up or W : speed up
 * Left/Right or A/D : turn
 * Space or Down : dash!
 
 ## TO DO
-* Add screenshots in README
 * Mouse controls
 * SFX
 * Tile-based transitions
