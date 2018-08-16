@@ -34,7 +34,8 @@ function love.load()
 	realityBuffer = 0
 	transition = nil
 	gameOver = false
-	uiFont = lg.setNewFont(12)
+	uiFont = lg.setNewFont(30)
+	lg.setFont(uiFont)
 	-------------------
 	door = Exit:new(W / (tileDim * 2), H / (tileDim * 2), 2)
 	switch1 = Switch:new(80, 80, 5)
@@ -81,10 +82,10 @@ function love.draw()
 	lg.ellipse('fill', Player.x, Player.y, 10, 10)
 	lg.setColor(1, 0, 0, 1)
 	if iter.id ~= 1 then printHealth() end
-	--lg.setFont(uiFont)
 	--lg.print("Health : "..math.floor(Player.health), 0, 0)
 	--lg.print("Switches left : "..iter.totalSwitches, 0, 15)
 	--lg.print("Norm : "..norm, 0, 30)
+	lg.print(iter.id, 10, 10)
 	if gameOver == true then printGameOver() end
 end
 

@@ -25,7 +25,7 @@ Each level will present you a number of Reality Fragments (yellow) you must coll
 [x] Hide health bar at the beginning
 [ ] SFX
 [x] Tile-based transitions
-[ ] Scoring system
+[x] Scoring system
 [ ] Player Sprite
 [ ] Better VFX (key spawn, Dash feedback)
 [ ] web ?
