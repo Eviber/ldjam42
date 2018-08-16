@@ -20,12 +20,12 @@ Each level will present you a number of Reality Fragments (yellow) you must coll
 * Space or Down : dash!
 
 ## TO DO
-[x] Add screenshots in README
-[ ] Mouse controls
-[x] Hide health bar at the beginning
-[ ] SFX
-[x] Tile-based transitions
-[x] Scoring system
-[ ] Player Sprite
-[ ] Better VFX (key spawn, Dash feedback)
-[ ] web ?
+- [x] Add screenshots in README
+- [ ] Mouse controls
+- [x] Hide health bar at the beginning
+- [ ] SFX
+- [x] Tile-based transitions
+- [x] Scoring system
+- [ ] Player Sprite
+- [ ] Better VFX (key spawn, Dash feedback)
+- [ ] web ?
