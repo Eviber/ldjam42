@@ -10,7 +10,8 @@ screen = require "shack/shack"
 local playerPos = require "playerPos"
 local vfx = require "vfx"
 local items = require "items"
-local drawTransi = require "drawTransi"
+require "drawTransi"
+require "generate"
 
 function getDist(x, y)
 	local dx = x * tileDim + tileDim / 2 - W / 2
@@ -39,6 +40,7 @@ function love.load()
 	switch1 = Switch:new(80, 80, 5)
 	-------------------
 	tuto = lg.newImage("tuto.png")
+	resetTransi()
 end
 
 transiRad = 0
@@ -57,11 +59,11 @@ function love.draw()
 	vfx.draw()
 	--	lg.circle("line", W/2, H/2, iter.decay)
 	if transition == true then
-		callColor(colorTab[(iter.id + 2) % 3 + 1])
-		lg.circle('fill', W/2, H/2, transiRad)
-		if transiRad > H/2 then blur:stop() end
-		if transiRad > diag then
+		drawTransition()
+		if transiRad > diag then blur:stop() end
+		if transiRad > diag and tileCount >= iter.width * iter.height then
 			transition = false
+			resetTransi()
 			transiRad = 0
 			generateIter(iter.id + 1)
 			norm = 0
@@ -103,6 +105,7 @@ function love.update(dt)
 		controls.getInput(dt)
 	elseif transition then
 		transiRad = transiRad + diag * dt / 2
+		growTransi(dt)
 	elseif gameOver then
 		if isDown('space') then
 			love.load()
