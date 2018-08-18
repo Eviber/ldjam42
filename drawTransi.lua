@@ -46,7 +46,6 @@ function drawTransition()
 			end
 		end
 	end
-	lg.circle('line', W/2, H/2, transiRad)
 end
 
 function resetTransi()
