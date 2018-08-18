@@ -45,9 +45,9 @@ function controls.getInput(dt)
 	local vel = 0
 
 	if isDown('right') or isDown('d') then
-		deg = deg + 3 * dt
+		deg = deg + 4 * dt
 	elseif isDown('left') or isDown('a') then
-		deg = deg - 3 * dt
+		deg = deg - 4 * dt
 	end
 	if isDown('up') or isDown('w') then
 		vel = 15 * dt
