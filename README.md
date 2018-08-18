@@ -26,6 +26,6 @@ Each level will present you a number of Reality Fragments (yellow) you must coll
 - [ ] SFX
 - [x] Tile-based transitions
 - [x] Scoring system
-- [ ] Player Sprite
+- [x] Player Sprite
 - [ ] Better VFX (key spawn, Dash feedback)
 - [ ] web ?
