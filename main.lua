@@ -41,6 +41,7 @@ function love.load()
 	switch1 = Switch:new(80, 80, 5)
 	-------------------
 	tuto = lg.newImage("tuto.png")
+	love.mouse.setVisible(false)
 	resetTransi()
 end
 
@@ -78,6 +79,7 @@ function love.draw()
 	else
 		callColor(colorTab[(iter.id + 2) % 3 + 1])
 	end
+	lg.circle('fill', (mx - W / 2)/5 + Player.x, (my - H / 2)/5 + Player.y, 5)
 	lg.line(Player.x, Player.y, dirx, diry)
 	lg.ellipse('fill', Player.x, Player.y, 10, 10)
 	lg.setColor(1, 0, 0, 1)

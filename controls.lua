@@ -37,7 +37,26 @@ local function applyvel(vel, deg, dt)
 	return realdx, realdy
 end
 
+local pressed
+function love.mousepressed(x, y, button, istouch, presses)
+	if button == 1 then
+		pressed = true
+	end
+end
+
+function love.mousereleased(x, y, button)
+	if button == 1 then
+		pressed = false
+	end
+end
+
 local deg = 0
+function love.mousemoved(x, y, dx, dy, istouch)
+	if pressed then
+		deg = deg + dx / 500
+	end
+end
+
 local cd = 0
 dirx, diry = 0, 0
 function controls.getInput(dt)
@@ -48,6 +67,15 @@ function controls.getInput(dt)
 		deg = deg + 3 * dt
 	elseif isDown('left') or isDown('a') then
 		deg = deg - 3 * dt
+	end
+	do
+		mx, my = love.mouse.getPosition()
+		deg = math.atan2(my - H/2, mx - W/2)
+		if math.sqrt((mx - W / 2)^2 + (my - H / 2)^2) > 300 then
+			mx = 300 * math.cos(deg) + W/2
+			my = 300 * math.sin(deg) + H/2
+			love.mouse.setPosition(mx, my)
+		end
 	end
 	if isDown('up') or isDown('w') then
 		vel = 15 * dt
