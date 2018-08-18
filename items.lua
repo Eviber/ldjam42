@@ -40,6 +40,10 @@ function Exit:interact(obj)
 	if self.locked == false then
 		Player.health = Player.health + 10 > 100 and 100 or Player.health + 10
 		blur:start()
+		itemList = {}
+		for _, i in pairs(p) do
+			i:stop()
+		end
 		transition = true
 	end
 end

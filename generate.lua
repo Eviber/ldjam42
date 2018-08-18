@@ -1,5 +1,4 @@
 function generateIter(id)
-	itemList = {}
 	p = {}
 	currentId = 3
 	local x, y

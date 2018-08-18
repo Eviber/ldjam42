@@ -130,6 +130,7 @@ function love.update(dt)
 		if iter.decay < 0 then iter.decay = 0 end
 		controls.getInput(dt)
 	elseif transition then
+		iter.decay = iter.decay + diag * dt / 2
 		transiRad = transiRad + diag * dt / 2
 		growTransi(dt)
 	elseif gameOver then
