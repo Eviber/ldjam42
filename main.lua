@@ -119,7 +119,7 @@ function love.update(dt)
 	if not transition and not gameOver then
 		posReact(dt)
 		if iter.id ~= 1 then reduceField(iter, dt) end
-		if iter.decay ~= 0 then
+		if iter.decay ~= 0  and iter.id ~= 1 then
 			if realityBuffer == 0 then
 				iter.decay = iter.decay - 20 * dt
 			else
