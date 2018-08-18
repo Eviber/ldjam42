@@ -44,6 +44,39 @@ function love.load()
 	resetTransi()
 end
 
+function pyth(x1, y1, x2, y2)
+	local dx = x2 - x1
+	local dy = y2 - y1
+	return math.sqrt(dx^2 + dy^2)
+end
+
+function drawPlayerTile(x, y, c)
+	local alpha = 4 / pyth(Player.x, Player.y, x + 4, y + 4) + ((math.sin(love.timer.getTime()) / 2 + 0.5) / 40)
+	if alpha > 0.1 then
+		lg.setColor(c.r, c.g, c.b, alpha)
+		lg.rectangle('fill', x, y, 8, 8)
+	end
+end
+
+function drawPlayer()
+	local x = (Player.x) - (Player.x) % 8
+	local y = (Player.y) - (Player.y) % 8
+	local c = colorTab[(iter.id + 2) % 3 + 1]
+
+	if transition then
+		c = colorTab[(iter.id + 0) % 3 + 1]
+	end
+	lg.setColor(c.r, c.g, c.b, 1)
+	lg.rectangle("fill", dirx - 2, diry - 2, 5, 5)
+
+	for i=x-80, x+80, 8 do
+		for j=y-80, y+80, 8 do
+			drawPlayerTile(i, j, c)
+		end
+	end
+	--drawPlayerTile(x, y , c)
+end
+
 transiRad = 0
 function love.draw()
 	screen:apply()
@@ -58,7 +91,6 @@ function love.draw()
 		lg.draw(tuto, 0, 0)
 	end
 	vfx.draw()
-	--	lg.circle("line", W/2, H/2, iter.decay)
 	if transition == true then
 		drawTransition()
 		if transiRad > diag then blur:stop() end
@@ -72,19 +104,12 @@ function love.draw()
 		lg.setColor(1,1,1,1)
 		lg.draw(blur)
 		lg.draw(smoke)
-		callColor(colorTab[(iter.id + 0) % 3 + 1])
 		realdx, realdy = 0, 0
 		norm = 0
-	else
-		callColor(colorTab[(iter.id + 2) % 3 + 1])
 	end
-	lg.line(Player.x, Player.y, dirx, diry)
-	lg.ellipse('fill', Player.x, Player.y, 10, 10)
+	drawPlayer()
 	lg.setColor(1, 0, 0, 1)
 	if iter.id ~= 1 then printHealth() end
-	--lg.print("Health : "..math.floor(Player.health), 0, 0)
-	--lg.print("Switches left : "..iter.totalSwitches, 0, 15)
-	--lg.print("Norm : "..norm, 0, 30)
 	lg.print(iter.id, 10, 10)
 	if gameOver == true then printGameOver() end
 end
