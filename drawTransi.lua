@@ -17,19 +17,19 @@ local function setTransi(r)
 end
 
 function growTransi(dt)
-	for _ = 0, 5000 * dt do
+	for _ = 0, 10000 * dt do
 		local i = 0
 		while not setTransi(transiRad) and i < 50 do i = i + 1 end
 	end
-	for _ = 0, 2500 * dt do
+	for _ = 0, 5000 * dt do
 		local i = 0
 		while not setTransi(transiRad * 3 / 4) and i < 50 do i = i + 1 end
 	end
-	for _ = 0, 1250 * dt do
+	for _ = 0, 2500 * dt do
 		local i = 0
 		while not setTransi(transiRad / 2) and i < 50 do i = i + 1 end
 	end
-	for _ = 0, 675 * dt do
+	for _ = 0, 1250 * dt do
 		local i = 0
 		while not setTransi(transiRad / 4) and i < 50 do i = i + 1 end
 	end
