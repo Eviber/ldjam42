@@ -1,7 +1,8 @@
 sfx = {}
 
 function sfx.preload()
-	sfx.beep = love.audio.newSource("sfx/beep.wav", "static")
+	sfx.weow = love.audio.newSource("sfx/weow.wav", "static")
+	sfx.realcraft = love.audio.newSource("sfx/realcraft.wav", "static")
 	sfx.bg = love.audio.newSource("sfx/background.wav", "static")
 	sfx.bg:setLooping(true)
 	sfx.bg:play()

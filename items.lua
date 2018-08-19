@@ -89,6 +89,7 @@ function RealityCrafter:new(x, y, id)
 	o.y = y
 	o.val = 4
 	o.id = id
+	o.sound = sfx.realcraft:clone()
 	iter.field[x][y] = id
 	itemList[id] = o
 	p[id] = love.graphics.newParticleSystem(love.graphics.newImage('pixel.png'))
@@ -103,6 +104,7 @@ end
 
 function RealityCrafter:interact(obj)
 	self.__index = self
+	self.sound:play()
 	realityBuffer = realityBuffer + 70
 	iter.field[self.x][self.y] = iter.field[self.x][self.y] / self.id
 	p[self.id]:stop()
@@ -120,6 +122,7 @@ function Switch:new(x, y, id)
 	o.val = 5
 	o.id = id
 	o.activated = false
+	o.sound = sfx.weow:clone()
 	iter.field[x][y] = id
 	itemList[id] = o
 	p[id] = love.graphics.newParticleSystem(love.graphics.newImage('pixel.png'))
@@ -136,6 +139,7 @@ function Switch:interact(obj)
 	self.__index = self
 	if self.activated == false then
 		self.activated = true
+		self.sound:play()
 		iter.totalSwitches = iter.totalSwitches - 1
 		if iter.totalSwitches <= 0 then
 			Exit.changeLock(itemList[2], false)
