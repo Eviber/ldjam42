@@ -135,7 +135,7 @@ function love.update(dt)
 		growTransi(dt)
 	elseif gameOver then
 		if isDown('space') then
-			love.load()
+			love.event.quit("restart")
 		end
 	end
 	sfx.update()
