@@ -35,21 +35,31 @@ function printGameOver()
 	lg.print("Press space to restart", W/2 - 190, H/2 + 50)
 end
 
+local t = 0
+local showHP = false
 function printHealth()
-	lg.setColor(1, 0, 0, 0.5)
-	if Player.health > 75 then
-		lg.rectangle('fill', 855, 15, (Player.health - 75) * 8, 25)
-		lg.rectangle('fill', 640, 15, 200, 25)
-		lg.rectangle('fill', 425, 15, 200, 25)
-		lg.rectangle('fill', 210, 15, 200, 25)
-	elseif Player.health > 50 then
-		lg.rectangle('fill', 640, 15, (Player.health - 50) * 8, 25)
-		lg.rectangle('fill', 425, 15, 200, 25)
-		lg.rectangle('fill', 210, 15, 200, 25)
-	elseif Player.health > 25 then
-		lg.rectangle('fill', 425, 15, (Player.health - 25) * 8, 25)
-		lg.rectangle('fill', 210, 15, 200, 25)
-	else
-		lg.rectangle('fill', 210, 15, Player.health * 8, 25)
+	if Player.health < 100 then
+		t = love.timer.getTime()
+	end
+
+	local a = 0.5 - (love.timer.getTime() - t) / 2 * 0.5
+	print(a)
+	if a > 0 then
+		lg.setColor(1, 0, 0, a)
+		if Player.health > 75 then
+			lg.rectangle('fill', 855, 15, (Player.health - 75) * 8, 25)
+			lg.rectangle('fill', 640, 15, 200, 25)
+			lg.rectangle('fill', 425, 15, 200, 25)
+			lg.rectangle('fill', 210, 15, 200, 25)
+		elseif Player.health > 50 then
+			lg.rectangle('fill', 640, 15, (Player.health - 50) * 8, 25)
+			lg.rectangle('fill', 425, 15, 200, 25)
+			lg.rectangle('fill', 210, 15, 200, 25)
+		elseif Player.health > 25 then
+			lg.rectangle('fill', 425, 15, (Player.health - 25) * 8, 25)
+			lg.rectangle('fill', 210, 15, 200, 25)
+		else
+			lg.rectangle('fill', 210, 15, Player.health * 8, 25)
+		end
 	end
 end
