@@ -43,7 +43,6 @@ function printHealth()
 	end
 
 	local a = 0.5 - (love.timer.getTime() - t) / 2 * 0.5
-	print(a)
 	if a > 0 then
 		lg.setColor(1, 0, 0, a)
 		if Player.health > 75 then
