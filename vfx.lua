@@ -28,7 +28,7 @@ function vfx.load()
 	blur:setPosition(W/2, H/2)
 	blur:setLinearAcceleration(1000, 1000, -1000, -1000)
 --	blur:setEmissionArea("borderellipse", 0, 0)
-	blur:setEmissionRate(300)
+	blur:setEmissionRate(500)
 	blur:stop()
 end
 

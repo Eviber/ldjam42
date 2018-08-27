@@ -93,8 +93,14 @@ function love.draw()
 	vfx.draw()
 	if transition == true then
 		drawTransition()
-		if transiRad > diag then blur:stop() end
-		if transiRad > diag and tileCount >= iter.width * iter.height then
+		if transiRad > diag / 2 then
+			blur:stop()
+			if not stopTime then
+				stopTime = love.timer.getTime() + 2
+			end
+		end
+		if transiRad > diag and tileCount >= iter.width * iter.height and love.timer.getTime() > stopTime then
+			stopTime = nil
 			transition = false
 			resetTransi()
 			transiRad = 0
