@@ -27,7 +27,6 @@ function love.load()
 	Player = {x = W/4, y = H/2, w = w, h = h, health = 100}
 	tileDim = W / 160
 	iter = Iteration:new(1, W / tileDim, H / tileDim, diag)
-	print(iter.width,iter.height)
 	vfx.load()
 	timeSum = 0
 	itemList = {}
