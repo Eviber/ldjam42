@@ -78,7 +78,8 @@ function drawPlayer()
 		end
 	end
 	lg.setColor(0, 1, 0, 1)
-	--lg.circle("line", Player.x, Player.y, 50)
+	--lg.circle("line", hitbox.x,  hitbox.y,  hitbox.rad)
+	--lg.circle("line", hitbox.x2, hitbox.y2, hitbox.rad)
 end
 
 transiRad = 0
