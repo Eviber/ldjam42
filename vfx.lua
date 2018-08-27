@@ -7,7 +7,6 @@ p = {}
 vfx = {}
 
 function vfx.load()
-	screen:setDimensions(W, H)
 	smoke = lg.newParticleSystem(love.graphics.newImage('pixel.png'))
 	smoke:setParticleLifetime(1)
 	smoke:setSizes(tileDim/4, tileDim*4)
@@ -26,8 +25,9 @@ function vfx.load()
 	blur:setParticleLifetime(2)
 	blur:setSizes(0, tileDim)
 	blur:setPosition(W/2, H/2)
-	blur:setLinearAcceleration(tileDim * 60, tileDim * 60, -tileDim * 60, -tileDim * 60)
---	blur:setEmissionArea("borderellipse", 0, 0)
+	blur:setRadialAcceleration(0, tileDim * 70)
+	blur:setLinearDamping(1)
+	blur:setEmissionArea("borderellipse", 1, 1)
 	blur:setEmissionRate(500)
 	blur:stop()
 end

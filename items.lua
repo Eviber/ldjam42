@@ -17,15 +17,16 @@ function Exit:new(x, y, id)
 	itemList[id] = o
 	p[id] = love.graphics.newParticleSystem(love.graphics.newImage('pixel.png'))
 	p[id]:setParticleLifetime(1)
-	p[id]:setSizes(9, 0)
-	p[id]:setLinearAcceleration(1, 1, -1, -1)
+	p[id]:setSizes(1, 1, 1, tileDim/2, tileDim/2)
+	p[id]:setLinearAcceleration(100, 100, -100, -100)
 	do
 		c = colorTab[(iter.id + 2) % 3 + 1]
-		p[id]:setColors(c.r, c.g, c.b, c.a)--, 0, 0, 1, 0)
+		p[id]:setColors(c.r, c.g, c.b, 0, c.r, c.g, c.b, c.a, c.r, c.g, c.b, c.a, c.r, c.g, c.b, c.a, c.r, c.g, c.b, c.a, c.r, c.g, c.b, 0)
 	end
-	p[id]:setEmissionRate(200)
+	p[id]:setEmissionRate(1000)
 	p[id]:setPosition(x * tileDim + tileDim/2, y * tileDim + tileDim/2)
-	p[id]:setTangentialAcceleration(500)
+	p[id]:setTangentialAcceleration(100000)
+	p[id]:setLinearDamping(200)
 	p[2]:stop()
 	return o
 end
@@ -42,7 +43,9 @@ function Exit:interact(obj)
 		blur:start()
 		itemList = {}
 		for _, i in pairs(p) do
-			i:stop()
+			if _ ~= 2 then
+				i:stop()
+			end
 		end
 		transition = true
 	end
