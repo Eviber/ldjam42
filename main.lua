@@ -43,6 +43,7 @@ function love.load()
 	-------------------
 	tuto = lg.newImage("tuto.png")
 	resetTransi()
+	burst = false
 end
 
 function pyth(x1, y1, x2, y2)
@@ -143,7 +144,7 @@ function love.update(dt)
 		growTransi(dt)
 	elseif gameOver then
 		if isDown('space') then
-			love.event.quit("restart")
+			love.load()
 		end
 	end
 	sfx.update()

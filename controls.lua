@@ -40,8 +40,8 @@ local function applyvel(vel, deg, dt)
 	return realdx, realdy
 end
 
-local deg = 0
 local cd = 0
+local deg = 0
 dirx, diry = 0, 0
 function controls.getInput(dt)
 	local dx,dy = 0,0
@@ -62,15 +62,23 @@ function controls.getInput(dt)
 	end
 	if cd > 0 then
 		cd = cd - dt
-	elseif isDown('down') or isDown('space') then
+	end
+	if burst then
+		burst = false
 		vel = vel + tileDim * 100/8
-		cd = 2
 	end
 	dx, dy = applyvel(vel, deg, dt)
 	Player.x, Player.y = Player.x+dx, Player.y+dy
 	dirx = Player.x + (3 * tileDim * math.cos(deg))
 	diry = Player.y + (3 * tileDim * math.sin(deg))
 	oob()
+end
+
+function love.keypressed(key)
+	if cd <= 0 and key == 'space' then
+		cd = 2
+		burst = true
+	end
 end
 
 return controls
