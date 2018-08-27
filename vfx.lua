@@ -33,7 +33,7 @@ function vfx.load()
 end
 
 function vfx.update(dt)
-	smoke:setEmissionRate(10 * norm + 1)
+	smoke:setEmissionRate(10 * norm)
 	screen:update(dt)
 	smoke:update(dt)
 	void:update(dt)
