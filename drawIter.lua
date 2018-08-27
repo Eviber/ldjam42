@@ -45,20 +45,13 @@ function printHealth()
 	local a = 0.5 - (love.timer.getTime() - t) / 2 * 0.5
 	if a > 0 then
 		lg.setColor(1, 0, 0, a)
-		if Player.health > 75 then
-			lg.rectangle('fill', 855, 15, (Player.health - 75) * 8, 25)
-			lg.rectangle('fill', 640, 15, 200, 25)
-			lg.rectangle('fill', 425, 15, 200, 25)
-			lg.rectangle('fill', 210, 15, 200, 25)
-		elseif Player.health > 50 then
-			lg.rectangle('fill', 640, 15, (Player.health - 50) * 8, 25)
-			lg.rectangle('fill', 425, 15, 200, 25)
-			lg.rectangle('fill', 210, 15, 200, 25)
-		elseif Player.health > 25 then
-			lg.rectangle('fill', 425, 15, (Player.health - 25) * 8, 25)
-			lg.rectangle('fill', 210, 15, 200, 25)
-		else
-			lg.rectangle('fill', 210, 15, Player.health * 8, 25)
+
+		local hp = 0
+		local x  = (W - (4 * 25 * tileDim + 6 * tileDim)) / 2
+		while hp < Player.health do
+			lg.rectangle('fill', x, tileDim * 2, math.min(25, Player.health - hp) * tileDim, tileDim * 4)
+			hp = hp + 25
+			x  = x  + 27 * tileDim
 		end
 	end
 end

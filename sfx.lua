@@ -15,8 +15,8 @@ function sfx.effect()
 end
 
 function sfx.update()
-	sfx[2]:setPitch((math.log(norm + 1.000001) + 1) / 4)
-	sfx[2]:setVolume(norm / 10 + 0.1)
+	sfx[2]:setPitch((math.log(speed + 1.000001) + 1) / 4)
+	sfx[2]:setVolume(speed / 10 + 0.1)
 
 	sfx.bg:setVolume(1 - iter.decay / diag)
 end

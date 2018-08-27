@@ -16,11 +16,13 @@ local function oob()
 end
 
 norm = 0
+speed = 0
 realdx, realdy = 0, 0
 local function applyvel(vel, deg, dt)
+	local max = tileDim * 10/8
 	if norm > 0 then
-		realdx = realdx / norm * (norm - 10 * dt)
-		realdy = realdy / norm * (norm - 10 * dt)
+		realdx = realdx / norm * (norm - max * dt)
+		realdy = realdy / norm * (norm - max * dt)
 		norm = math.sqrt(realdx^2 + realdy^2)
 		if norm < 1  and vel == 0 then
 			realdx, realdy = 0, 0
@@ -29,11 +31,12 @@ local function applyvel(vel, deg, dt)
 	realdx = realdx + vel * math.cos(deg)
 	realdy = realdy + vel * math.sin(deg)
 	norm = math.sqrt(realdx^2 + realdy^2)
-	if norm > 10 then
-		realdx = realdx / norm * (10 + (norm - 10) / 2)
-		realdy = realdy / norm * (10 + (norm - 10) / 2)
+	if norm > max then
+		realdx = realdx / norm * (max + (norm - max) / 2)
+		realdy = realdy / norm * (max + (norm - max) / 2)
 	end
 	norm = math.sqrt(realdx^2 + realdy^2)
+	speed = norm/max*10
 	return realdx, realdy
 end
 
@@ -50,23 +53,23 @@ function controls.getInput(dt)
 		deg = deg - 4 * dt
 	end
 	if isDown('up') or isDown('w') then
-		vel = 15 * dt
+		vel = tileDim * 15/8 * dt
 	else
 		vel = 0
 	end
-	if vel < 0 or vel > 10 then
-		vel = vel < 0 and 0 or 10
+	if vel < 0 or vel > tileDim * 10/8 then
+		vel = vel < 0 and 0 or tileDim * 10/8
 	end
 	if cd > 0 then
 		cd = cd - dt
 	elseif isDown('down') or isDown('space') then
-		vel = vel + 100
+		vel = vel + tileDim * 100/8
 		cd = 2
 	end
 	dx, dy = applyvel(vel, deg, dt)
 	Player.x, Player.y = Player.x+dx, Player.y+dy
-	dirx = Player.x + (20 * math.cos(deg))
-	diry = Player.y + (20 * math.sin(deg))
+	dirx = Player.x + (3 * tileDim * math.cos(deg))
+	diry = Player.y + (3 * tileDim * math.sin(deg))
 	oob()
 end
 

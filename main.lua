@@ -25,8 +25,9 @@ function love.load()
 	w,h = 5,5
 	diag = math.sqrt((W/2)^2 + (H/2)^2)
 	Player = {x = W/4, y = H/2, w = w, h = h, health = 100}
-	iter = Iteration:new(1, W / 8, H / 8, diag)
-	tileDim = math.min(W / iter.width, H / iter.height)
+	tileDim = W / 160
+	iter = Iteration:new(1, W / tileDim, H / tileDim, diag)
+	print(iter.width,iter.height)
 	vfx.load()
 	timeSum = 0
 	itemList = {}
@@ -51,30 +52,32 @@ function pyth(x1, y1, x2, y2)
 end
 
 function drawPlayerTile(x, y, c)
-	local alpha = 4 / pyth(Player.x, Player.y, x + 4, y + 4) + ((math.sin(love.timer.getTime()) / 2 + 0.5) / 40)
+	local alpha = tileDim/2 / pyth(Player.x, Player.y, x + 4, y + 4) + (math.sin(love.timer.getTime())/2 + 0.5) / 40
 	if alpha > 0.1 then
 		lg.setColor(c.r, c.g, c.b, alpha)
-		lg.rectangle('fill', x, y, 8, 8)
+		lg.rectangle('fill', x, y, tileDim, tileDim)
 	end
 end
 
 function drawPlayer()
-	local x = (Player.x) - (Player.x) % 8
-	local y = (Player.y) - (Player.y) % 8
+	local x = (Player.x) - (Player.x) % tileDim
+	local y = (Player.y) - (Player.y) % tileDim
 	local c = colorTab[(iter.id + 2) % 3 + 1]
 
 	if transition then
 		c = colorTab[(iter.id + 0) % 3 + 1]
 	end
 	lg.setColor(c.r, c.g, c.b, 1)
-	lg.rectangle("fill", dirx - 2, diry - 2, 5, 5)
+	lg.rectangle("fill", dirx-tileDim/4, diry-tileDim/4, tileDim/2, tileDim/2)
 
-	for i=x-80, x+80, 8 do
-		for j=y-80, y+80, 8 do
+	local halfRect = tileDim * 10
+	for i = x-halfRect, x+halfRect, tileDim do
+		for j = y-halfRect, y+halfRect, tileDim do
 			drawPlayerTile(i, j, c)
 		end
 	end
-	--drawPlayerTile(x, y , c)
+	lg.setColor(0, 1, 0, 1)
+	--lg.circle("line", Player.x, Player.y, 50)
 end
 
 transiRad = 0
@@ -105,13 +108,12 @@ function love.draw()
 			resetTransi()
 			transiRad = 0
 			generateIter(iter.id + 1)
-			norm = 0
 		end
 		lg.setColor(1,1,1,1)
 		lg.draw(blur)
 		lg.draw(smoke)
 		realdx, realdy = 0, 0
-		norm = 0
+		speed = 0
 	end
 	drawPlayer()
 	lg.setColor(1, 0, 0, 1)
