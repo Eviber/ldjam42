@@ -53,7 +53,7 @@ function pyth(x1, y1, x2, y2)
 end
 
 function drawPlayerTile(x, y, c)
-	local alpha = tileDim/2 / pyth(Player.x, Player.y, x + 4, y + 4) + (math.sin(love.timer.getTime())/2 + 0.5) / 40
+	local alpha = tileDim/2 / pyth(Player.x, Player.y, x + 4, y + 4) + (math.sin(love.timer.getTime() * 2)/2) / 40
 	if alpha > 0.1 then
 		lg.setColor(c.r, c.g, c.b, alpha)
 		lg.rectangle('fill', x, y, tileDim, tileDim)
