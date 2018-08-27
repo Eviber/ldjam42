@@ -3,6 +3,7 @@ Iteration = {id = 0, width = 10, height = 10, decay = 1, totalSwitches = 0, fiel
 Field = {}
 Tile = {x, y, state = 1}
 
+aDecay = {}
 
 function Tile:new (x, y, state)
 	local o = {}
@@ -42,6 +43,7 @@ function killTile(iter)
 	local dy = y * tileDim + tileDim / 2 - H / 2
 	if math.sqrt(dx^2 + dy^2) > iter.decay and iter.field[x][y] > 0 then
 		iter.field[x][y] = -iter.field[x][y]
+		table.insert(aDecay, {x=x, y=y, t=love.timer.getTime()})
 		return true
 	else
 		return false

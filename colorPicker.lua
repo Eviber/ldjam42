@@ -9,6 +9,7 @@ function getColor(color, a)
 	end
 end
 
-function callColor(color)
-	lg.setColor(getColor(color))
+function callColor(color, a)
+	a = a or color.a
+	lg.setColor(color.r, color.g, color.b, a)
 end

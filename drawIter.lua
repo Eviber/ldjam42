@@ -6,21 +6,29 @@ grey = {r = 0.375, g = 0.375, b = 0.375, a = 1}
 black = {r = 0, g = 0, b = 0, a = 1}
 colorTab = {white, grey, black}
 
-function drawField (source)
+function drawField()
 	local i, j
 	for i = 0, iter.width - 1 do
 		for j = 0, iter.height - 1 do
-			if getDist(i, j) < iter.decay and iter.field[i][j] < 0 then
+			val = iter.field[i][j]
+			if getDist(i, j) < iter.decay and val < 0 then
 				iter.field[i][j] = iter.field[i][j] * -1
+				val = iter.field[i][j]
 			end
-			if iter.field[i][j] == 1 then
+			if val == 1 then
 				callColor(colorTab[((iter.id + 1) % 3) + 1])
-				--[[else
-				print("tile ["..i.." "..j.."]")]]
 			end
-			if iter.field[i][j] ~= -1 then
+			if val ~= -1 then
 				lg.rectangle('fill', i * tileDim + (W - iter.width * tileDim) / 2, j * tileDim + (H - iter.height * tileDim) / 2, tileDim, tileDim)
 			end
+		end
+	end
+	for _, i in pairs(aDecay) do
+		local a = 1 - 10 * math.min(love.timer.getTime() - i.t, 0.1)
+		callColor(colorTab[((iter.id + 1) % 3) + 1], a)
+		lg.rectangle('fill', i.x * tileDim, i.y * tileDim, tileDim, tileDim)
+		if a == 0 then
+			table.remove(aDecay, _)
 		end
 	end
 end
