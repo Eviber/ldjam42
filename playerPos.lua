@@ -26,11 +26,11 @@ function posReact(dt)
 	end
 
 	hitbox = {}
-	hitbox.rad = (speed/2 + 3) * tileDim
+	hitbox.rad = (speed/4 + 3) * tileDim
 	hitbox.x   = Player.x
 	hitbox.y   = Player.y
-	hitbox.x2  = Player.x + (Player.x - dirx)*2 * math.min(3/speed, 1)
-	hitbox.y2  = Player.y + (Player.y - diry)*2 * math.min(3/speed, 1)
+	hitbox.x2  = Player.x + (Player.x - dirx) * math.min(3/speed, 1)
+	hitbox.y2  = Player.y + (Player.y - diry) * math.min(3/speed, 1)
 	tileX, tileY = getPos(hitbox.x, hitbox.y)
 	for i = -10, 10 do
 		for j = -10, 10 do
@@ -39,7 +39,7 @@ function posReact(dt)
 				local val = math.abs(iter.field[tileX + i][tileY + j])
 				local xx, yy = x * tileDim + tileDim / 2, y * tileDim + tileDim / 2
 				if (math.sqrt((xx - hitbox.x2)^2 + (yy - hitbox.y2)^2) < hitbox.rad or
-				    math.sqrt((xx - hitbox.x )^2 + (yy - hitbox.y )^2) < hitbox.rad) and val > 1 then
+					math.sqrt((xx - hitbox.x )^2 + (yy - hitbox.y )^2) < hitbox.rad) and val > 1 then
 					itemList[val].interact(itemList[val])
 				end
 			end
