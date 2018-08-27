@@ -46,7 +46,7 @@ function vfx.update(dt)
 		void:setColors(r, g, b, 1, r, g, b, 0)
 		smoke:setColors(r, g, b, 1, r, g, b, 0)
 		r, g, b = getColor(colorTab[(iter.id + i + 1) % 3 + 1], False)
-		blur:setColors(r, g, b, 1)
+		blur:setColors(r, g, b, 1, r, g, b, 1, r, g, b, 1, r, g, b, 1, r, g, b, 1, r, g, b, 1, r, g, b, 1, r, g, b, 0)
 	end
 	for _, psys in pairs(p) do
 		psys:update(dt)
